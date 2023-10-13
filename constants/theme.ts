@@ -3,12 +3,13 @@ const COLORS = {
   lightgray: '#BEBEBE',
   backgroundGray: "#FFFFFF21",
   white: '#fff',
+  violet: '#A12BFF'
 };
 
 const SIZES = {
   xLarge: 52,
   medium: 20,
-  small: 16
+  small: 18
 }
 
 const WEIGHTS = {
@@ -17,8 +18,9 @@ const WEIGHTS = {
 }
 
 const RADIUS = {
-    small: 6,
-    medium: 12,
+  small: 6,
+  medium: 12,
+  large: 40
 }
 
 const PADDING = {

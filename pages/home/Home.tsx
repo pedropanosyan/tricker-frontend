@@ -4,7 +4,7 @@ const Home = () => {
 
     return (
         <SafeAreaView>
-            <Text>Home</Text>
+            <Text></Text>
         </SafeAreaView>
     )
 
