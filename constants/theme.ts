@@ -12,7 +12,7 @@ const SIZES = {
 }
 
 const WEIGHTS = {
-  bold: 425,
+  bold: 400,
   bolder: 500
 }
 

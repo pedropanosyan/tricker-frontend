@@ -17,7 +17,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.tricker.tricker-frontend"
+      "bundleIdentifier": "com.sirius.tricker"
     },
     "android": {
       "adaptiveIcon": {
@@ -36,6 +36,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "f9b73d7e-9c28-4ff0-b21b-3877485c6ee9"
+      }
     }
   }
 }

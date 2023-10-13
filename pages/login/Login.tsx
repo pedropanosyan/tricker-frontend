@@ -6,6 +6,7 @@ import TrickerIcon from "../../assets/icons/components/TrickerIcon";
 import GoogleIcon from "../../assets/icons/components/GoogleIcon";
 import {LinearGradient} from "expo-linear-gradient";
 import {useEffect, useState} from "react";
+import { router } from 'expo-router';
 
 
 WebBrowser.maybeCompleteAuthSession();
@@ -24,6 +25,7 @@ const Login = () => {
         if (response?.type === 'success') {
             setAccessToken(response?.authentication?.accessToken ?? '');
             accessToken && fetchUserInfo()
+
         }
     }, [response, accessToken]);
 
@@ -35,6 +37,7 @@ const Login = () => {
         });
       const userInfo = await response.json();
       setUser(userInfo)
+      router.replace('/home')
     }
     
     return (

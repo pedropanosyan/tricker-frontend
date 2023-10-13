@@ -1,7 +1,10 @@
-import {Redirect} from "expo-router";
+import Login from "../pages/login/Login";
 
-const StartPage = () => {
-    return <Redirect href="/home"/>
+const LoginRoute = () => {
+
+    return (
+        <Login />
+    )
 }
 
-export default StartPage;
+export default LoginRoute;
