@@ -1,11 +1,12 @@
 import {StyleSheet} from "react-native";
 import {COLORS, RADIUS, SIZES, WEIGHTS} from "../../constants/theme";
-import linearGradientNativeComponent from "react-native-svg/src/fabric/LinearGradientNativeComponent";
 
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: COLORS.black,
+        backgroundColor: COLORS.blackSecondary,
+        borderBottomColor: COLORS.backgroundGray,
+        borderBottomWidth: 1,
     },
     secondaryContainer:{
         flex: 1,
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     profileIcon: {
         borderRadius: RADIUS.large,
         borderWidth: 3,
-        borderColor: "#A12BFF"
+        borderColor: COLORS.violet
     }
 });
 

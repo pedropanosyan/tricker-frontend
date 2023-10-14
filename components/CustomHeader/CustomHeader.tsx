@@ -1,7 +1,5 @@
 import {View, Text, SafeAreaView, TouchableOpacity} from "react-native";
-import {COLORS} from "../../constants/theme";
 import {AntDesign, FontAwesome} from "@expo/vector-icons";
-import {white} from "colorette";
 import styles from "./styles";
 
 
@@ -9,7 +7,7 @@ import styles from "./styles";
 const CustomHeader = () => {
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.secondaryContainer}>
                 <FontAwesome name="bars" size={24} color="white" />
                 <TouchableOpacity onPress={() => {}} style={styles.projectSelection}>
@@ -20,7 +18,7 @@ const CustomHeader = () => {
                         <FontAwesome  name="user-circle" size={24} color="white" />
                     </TouchableOpacity>
             </View>
-        </SafeAreaView>
+        </View>
     )
 
 }

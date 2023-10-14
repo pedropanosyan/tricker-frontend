@@ -3,7 +3,7 @@ import {COLORS} from "../../constants/theme";
 
 const styles = StyleSheet.create({
     headerStyle: {
-        backgroundColor: COLORS.black,
+        backgroundColor: COLORS.blackSecondary,
         color: COLORS.white,
     },
     headerTitleStyle: {

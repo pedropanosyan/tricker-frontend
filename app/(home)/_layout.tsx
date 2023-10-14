@@ -13,11 +13,6 @@ export default () => {
             header: () => (<CustomHeader />),
             headerShown: true
         }}>
-            <Stack.Screen name="home" />
-            <Stack.Screen name="modal" options={{
-                presentation: 'modal',
-            }} />
-
         </Stack>
     )
 }
