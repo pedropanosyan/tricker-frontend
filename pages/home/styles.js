@@ -5,11 +5,13 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         backgroundColor: COLORS.black,
-        height: '100vh',
+        maxHeight: '100vh',
     },
     ticketsContainer: {
         width: '90vw',
-        alignSelf: "center"
+        alignSelf: "center",
+        overflow: "scroll",
+        maxHeight: '65vh',
     },
     optionsContainer: {
         marginTop: MARGIN.medium,
@@ -17,6 +19,9 @@ const styles = StyleSheet.create({
         marginLeft: MARGIN.xxSmall,
         flexDirection: "row",
     },
+    timerContainer: {
+
+    }
 })
 
 export default styles;

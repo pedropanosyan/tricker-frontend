@@ -3,6 +3,7 @@ import TicketCard from "../../components/TicketCard/TicketCard";
 import styles from "./styles";
 import FilterButton from "./components/FilterButton";
 import ProjectModal from "../../components/ProjectModal/ProjectModal";
+import Timer from "../../components/Timer/Timer";
 
 
 const Home = () => {
@@ -54,6 +55,11 @@ const Home = () => {
                 <TicketCard/>
                 <TicketCard/>
                 <TicketCard/>
+                <TicketCard/>
+                <TicketCard/>
+            </View>
+            <View style={styles.timerContainer}>
+                <Timer/>
             </View>
         </SafeAreaView>
     )

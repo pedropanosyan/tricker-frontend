@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: 'center',
         width:"50%",
-        height:"25%",
+        top: SIZES.xLarge,
+        position: "absolute",
         backgroundColor: COLORS.lightergray,
         padding: PADDING.xSmall,
         borderRadius: RADIUS.medium,

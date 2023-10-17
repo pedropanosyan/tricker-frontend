@@ -1,4 +1,4 @@
-import {FlatList, Text, View} from "react-native";
+import {FlatList, Text, TouchableOpacity, View} from "react-native";
 import ProjectLogo from "../../assets/icons/components/ProjectLogo";
 import styles from "./styles"
 
@@ -14,10 +14,10 @@ interface ProjectArray {
 const Project = ({name, image}: ProjectProps) => {
 
     return (
-        <View style={styles.projectNameContainer}>
+        <TouchableOpacity style={styles.projectNameContainer}>
             <ProjectLogo />
             <Text style={styles.projectName}>{name}</Text>
-        </View>
+        </TouchableOpacity>
     )
 }
 

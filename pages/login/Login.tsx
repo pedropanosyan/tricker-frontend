@@ -8,7 +8,6 @@ import {LinearGradient} from "expo-linear-gradient";
 import {useEffect, useState} from "react";
 import { router } from 'expo-router';
 
-
 WebBrowser.maybeCompleteAuthSession();
 
 const Login = () => {
@@ -17,8 +16,8 @@ const Login = () => {
     const [user, setUser] = useState(undefined)
     
     const [request, response, promptAsync] = Google.useAuthRequest({
-        iosClientId: '823502041656-n7ev10pcpttq2db9h5b0f069mqbpdokl.apps.googleusercontent.com',
-        webClientId: '823502041656-6d8tl1h84k4qdti7te45t7coskgu2b1g.apps.googleusercontent.com',
+        iosClientId: "823502041656-n7ev10pcpttq2db9h5b0f069mqbpdokl.apps.googleusercontent.com",
+        webClientId: "823502041656-6d8tl1h84k4qdti7te45t7coskgu2b1g.apps.googleusercontent.com",
     });
 
     useEffect(() => {
@@ -37,7 +36,7 @@ const Login = () => {
         });
       const userInfo = await response.json();
       setUser(userInfo)
-      router.replace('/home')
+      router.replace('/(home)')
     }
     
     return (

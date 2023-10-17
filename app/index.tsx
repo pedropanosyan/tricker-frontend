@@ -5,7 +5,7 @@ import {Redirect} from "expo-router";
 const LoginRoute = () => {
 
     return (
-        <Redirect href="/(home)" />
+        <Redirect href="/login" />
     )
 }
 

@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.tricker"
+      "package": "com.sirius.tricker"
     },
     "web": {
       "bundler": "metro",

@@ -6,13 +6,12 @@ import CustomHeader from "../../components/CustomHeader/CustomHeader";
 
 export default () => {
 
-    const router = useRouter();
-
     return (
         <Stack screenOptions={{
             header: () => (<CustomHeader />),
             headerShown: true
         }}>
+            <Stack.Screen name="/"  />
         </Stack>
     )
 }

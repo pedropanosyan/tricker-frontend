@@ -6,7 +6,6 @@ const HomeRoute = () => {
 
     return (
         <>
-            <CustomHeader />
             <Home />
         </>
     )
