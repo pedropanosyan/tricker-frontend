@@ -1,6 +1,8 @@
-import {FlatList, Text, TouchableOpacity, View} from "react-native";
+import {FlatList, TouchableOpacity, View} from "react-native";
 import ProjectLogo from "../../assets/icons/components/ProjectLogo";
-import styles from "./styles"
+import {Text, Row} from "../../styled-components/components.styles";
+import {COLORS} from "../../constants/theme";
+import {ModalContainer} from "./styles.components";
 
 interface ProjectProps {
     name: string;
@@ -14,22 +16,22 @@ interface ProjectArray {
 const Project = ({name, image}: ProjectProps) => {
 
     return (
-        <TouchableOpacity style={styles.projectNameContainer}>
+        <Row gap="8px" padding="8px">
             <ProjectLogo />
-            <Text style={styles.projectName}>{name}</Text>
-        </TouchableOpacity>
+            <Text color={COLORS.black}>{name}</Text>
+        </Row>
     )
 }
 
 const ProjectModal = ({projects}: ProjectArray) => {
 
     return (
-        <View style={styles.container}>
+        <ModalContainer>
             <FlatList data={projects}
                       renderItem={
                             ({item}) => <Project name={item.name} />
                       } />
-        </View>
+        </ModalContainer>
     )
 }
 

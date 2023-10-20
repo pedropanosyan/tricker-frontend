@@ -8,9 +8,8 @@ EVENT --> TICKET
 
 class USER {
     PK id
-    username
+    name
     email
-    password
     profile_pict
 }
 
@@ -31,8 +30,6 @@ class TICKET{
     name
     description
     status
-    total_time
-    marked
     FK user_id
     FK project_id
 }
@@ -41,6 +38,9 @@ class EVENT {
     PK id
     name
     date
+    causante:ticket_id
+    description?
+    time
     FK ticket_id
 }
 

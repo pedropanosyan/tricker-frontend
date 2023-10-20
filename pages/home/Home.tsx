@@ -4,6 +4,9 @@ import styles from "./styles";
 import FilterButton from "./components/FilterButton";
 import ProjectModal from "../../components/ProjectModal/ProjectModal";
 import Timer from "../../components/Timer/Timer";
+import {GlobalContainer, Row} from "../../styled-components/components.styles";
+import {COLORS} from "../../constants/theme";
+import {TicketsContainer} from "./styles.components";
 
 
 const Home = () => {
@@ -42,26 +45,26 @@ const Home = () => {
     ]
 
     return (
-        <SafeAreaView style={styles.container}>
-            <View style={styles.optionsContainer}>
+        <GlobalContainer bg={COLORS.black}>
+            <Row rnCSS="margin-vertical=16px; margin-horizontal:4px;">
                 <FlatList data={options} renderItem={
                     ({item}) => (
                         <FilterButton name={item.name} selected={item.selected} />
                     )}
                     horizontal
                 />
-            </View>
-            <View style={styles.ticketsContainer}>
+            </Row>
+            <TicketsContainer>
                 <TicketCard/>
                 <TicketCard/>
                 <TicketCard/>
                 <TicketCard/>
                 <TicketCard/>
-            </View>
-            <View style={styles.timerContainer}>
+            </TicketsContainer>
+            <View>
                 <Timer/>
             </View>
-        </SafeAreaView>
+        </GlobalContainer>
     )
 
 

@@ -1,8 +1,9 @@
-import {View, Text, SafeAreaView, TouchableOpacity} from "react-native";
 import {AntDesign, FontAwesome} from "@expo/vector-icons";
-import styles from "./styles";
 import {useState} from "react";
 import ProjectModal from "../ProjectModal/ProjectModal";
+import {HeaderBottomBorder, ProfileIcon, SecondaryContainer} from "./header.styles";
+import {Row, Text, RowSpaceBetween, TouchableRow} from "../../styled-components/components.styles";
+import {COLORS} from "../../constants/theme";
 
 const projects = [
     {name: "Project 1", image: "image"},
@@ -21,19 +22,20 @@ const CustomHeader = () => {
     }
 
     return (
-        <View style={styles.container}>
-            <View style={styles.secondaryContainer}>
+        <Row bg={COLORS.blackSecondary}>
+            <HeaderBottomBorder />
+            <RowSpaceBetween rnCSS="flex:1;" padding="20">
                 <FontAwesome name="bars" size={24} color="white" />
-                <TouchableOpacity onPress={() => {handleModalClick()}} style={styles.projectSelection}>
-                    <AntDesign style={styles.antIcon} name="down" size={20} color="white" />
-                    <Text style={styles.projectText}>Project name</Text>
-                </TouchableOpacity>
-                    <TouchableOpacity style={styles.profileIcon}>
-                        <FontAwesome  name="user-circle" size={24} color="white" />
-                    </TouchableOpacity>
-            </View>
+                <TouchableRow gap="8px" onPress={() => {handleModalClick()}}>
+                    <AntDesign name="down" size={20} color="white" />
+                    <Text size="18">Project name</Text>
+                </TouchableRow>
+                <ProfileIcon>
+                    <FontAwesome  name="user-circle" size={24} color="white" />
+                </ProfileIcon>
+            </RowSpaceBetween>
             {openProjectsModal && <ProjectModal projects={projects}/>}
-        </View>
+        </Row>
     )
 
 }

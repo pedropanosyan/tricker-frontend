@@ -1,7 +1,9 @@
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {StyleSheet, TouchableOpacity, View} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 import {COLORS, MARGIN, PADDING, RADIUS, SIZES, WEIGHTS} from "../../../constants/theme";
 import {useState} from "react";
+import {Text} from "../../../styled-components/components.styles";
+import styled from "rn-css";
 
 interface FilterButtonProps {
     name: string;
@@ -15,13 +17,13 @@ const FilterButton = ({name, selected}: FilterButtonProps) => {
     return (
         <TouchableOpacity onPress={() => setIsSelected(!isSelected)}>
             {isSelected ? (
-                <LinearGradient style={styles.container} colors={[COLORS.lightBlue, COLORS.violet]}>
-                        <Text style={styles.selectedText}>{name}</Text>
-                </LinearGradient>
+                    <LinearGradient style={styles.container} colors={[COLORS.lightBlue, COLORS.violet]}>
+                            <Text color={COLORS.black} weight="700">{name}</Text>
+                    </LinearGradient>
             ) : (
-                <View style={styles.container}>
-                    <Text style={styles.unselectedText}>{name}</Text>
-                </View>
+                <Container>
+                    <Text weight="400">{name}</Text>
+                </Container>
             )}
         </TouchableOpacity>
 
@@ -31,6 +33,13 @@ const FilterButton = ({name, selected}: FilterButtonProps) => {
 
 export default FilterButton;
 
+const Container = styled.View`
+  padding: 8px 16px;
+  background-color: ${COLORS.blackSecondary};
+  border-radius: ${RADIUS.large};
+  margin: 0 6px;
+`;
+
 const styles = StyleSheet.create({
     container: {
         paddingVertical: PADDING.xSmall,
@@ -38,15 +47,5 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.blackSecondary,
         borderRadius: RADIUS.large,
         marginHorizontal: 6,
-    },
-    selectedText: {
-        fontSize: SIZES.xxSmall,
-        color: COLORS.black,
-        fontWeight: "700",
-    },
-    unselectedText: {
-        fontSize: SIZES.xxSmall,
-        color: COLORS.white,
-        fontWeight: "400",
     }
 })
