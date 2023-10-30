@@ -3,11 +3,13 @@
     blackSecondary: '#1A1A1A',
     blackTertiary: '#1F1F1F',
     gray: '#DEDEDE',
+    textGray: '#9D9D9D',
     lightgray: '#BEBEBE',
     lightergray: '#D9D9D9',
     backgroundGray: "#FFFFFF21",
     white: '#fff',
     violet: '#A12BFF',
+    lightViolet: '#D795FF',
     lightBlue: '#43FFDD',
     orange: '#FFA451',
   };

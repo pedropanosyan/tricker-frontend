@@ -1,7 +1,6 @@
 import {FlatList, TouchableOpacity, View} from "react-native";
 import ProjectLogo from "../../assets/icons/components/ProjectLogo";
-import {Text, Row} from "../../styled-components/components.styles";
-import {COLORS} from "../../constants/theme";
+import {Text, RowAlignedCenter, useMyTheme} from "../../styled-components/components.styles";
 import {ModalContainer} from "./styles.components";
 
 interface ProjectProps {
@@ -15,11 +14,13 @@ interface ProjectArray {
 
 const Project = ({name, image}: ProjectProps) => {
 
+    const theme = useMyTheme();
+
     return (
-        <Row gap="8px" padding="8px">
+        <RowAlignedCenter gap="8px" padding="8px">
             <ProjectLogo />
-            <Text color={COLORS.black}>{name}</Text>
-        </Row>
+            <Text color={theme.black}>{name}</Text>
+        </RowAlignedCenter>
     )
 }
 

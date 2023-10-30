@@ -1,52 +1,39 @@
-// import FontAwesome from '@expo/vector-icons/FontAwesome';
-// import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-// import { useFonts } from 'expo-font';
-// import { SplashScreen, Stack } from 'expo-router';
-// import { useEffect } from 'react';
-// import { useColorScheme } from 'react-native';
-//
-// export {
-//   // Catch any errors thrown by the Layout component.
-//   ErrorBoundary,
-// } from 'expo-router';
-//
-//
-// // Prevent the splash screen from auto-hiding before asset loading is complete.
-// SplashScreen.preventAutoHideAsync();
-//
-// export default function RootLayout() {
-//   const [loaded, error] = useFonts({
-//     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-//     Gotham: require('../assets/fonts/Gotham-Font/Gotham-Black.otf'),
-//   });
-//
-//   // Expo Router uses Error Boundaries to catch errors in the navigation tree.
-//   useEffect(() => {
-//     if (error) throw error;
-//   }, [error]);
-//
-//   useEffect(() => {
-//     if (loaded) {
-//       SplashScreen.hideAsync();
-//     }
-//   }, [loaded]);
-//
-//   if (!loaded) {
-//     return null;
-//   }
-//
-//   return <RootLayoutNav />;
-// }
-//
-// function RootLayoutNav() {
-//   const colorScheme = useColorScheme();
-//
-//   return (
-//     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-//       <Stack>
-//         <Stack.Screen name="(home)" />
-//         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-//       </Stack>
-//     </ThemeProvider>
-//   );
-// }
+import { Provider } from "react-redux";
+import { store }  from "../store/store";
+import {Slot, Stack} from "expo-router";
+import React from "react";
+import {ThemeProvider} from "rn-css";
+import {theme} from "../styled-components/theme";
+import {ApolloClient, InMemoryCache, HttpLink, ApolloProvider} from '@apollo/client';
+import {GestureHandlerRootView} from "react-native-gesture-handler";
+
+const linearAPIKey = "lin_api_Ei5J2vVJrp6iDflmlYRuzwVuauEJbELfCMhhVqQL"
+const linearAPIUrl = "https://api.linear.app/graphql"
+
+const httpLink = new HttpLink({
+    uri: linearAPIUrl,
+    fetch: fetch,
+    headers: {
+        Authorization: linearAPIKey,
+    },
+});
+
+const client = new ApolloClient({
+    link: httpLink,
+    cache: new InMemoryCache(),});
+
+export default function RootLayoutNav() {
+
+    return (
+        <ThemeProvider theme={theme}>
+            <ApolloProvider client={client}>
+                <Provider store={store}>
+                    <GestureHandlerRootView>
+                        <Slot />
+                    </GestureHandlerRootView>
+                </Provider>
+            </ApolloProvider>
+        </ThemeProvider>
+    );
+}
+

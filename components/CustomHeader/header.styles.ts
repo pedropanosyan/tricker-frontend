@@ -1,10 +1,7 @@
 import styled from "rn-css";
 import {COLORS, RADIUS, SIZES, WEIGHTS} from "../../constants/theme";
+import {theme} from "../../styled-components/theme";
 
-export const HeaderBottomBorder = styled.View`
-  border-bottom-color: ${COLORS.backgroundGray};
-  border-bottom-width: 1px;
-`;
 
 export const SecondaryContainer = styled.View`
   flex: 1;
@@ -15,9 +12,9 @@ export const SecondaryContainer = styled.View`
 `;
 
 export const ProfileIcon = styled.View`
-  border-radius: ${RADIUS.large}px;
+  border-radius: ${theme.radius.large}px;
   border-width: 3px;
-  border-color: ${COLORS.violet};
+  border-color: ${theme.violet};
 `;
 
 export const ProjectSelection = styled.TouchableOpacity`

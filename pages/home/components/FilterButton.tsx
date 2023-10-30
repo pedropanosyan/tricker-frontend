@@ -1,9 +1,10 @@
 import {StyleSheet, TouchableOpacity, View} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
-import {COLORS, MARGIN, PADDING, RADIUS, SIZES, WEIGHTS} from "../../../constants/theme";
 import {useState} from "react";
 import {Text} from "../../../styled-components/components.styles";
 import styled from "rn-css";
+import {theme} from "../../../styled-components/theme";
+import {isNotTestHost} from "@expo/config-plugins/build/ios/utils/Xcodeproj";
 
 interface FilterButtonProps {
     name: string;
@@ -17,8 +18,8 @@ const FilterButton = ({name, selected}: FilterButtonProps) => {
     return (
         <TouchableOpacity onPress={() => setIsSelected(!isSelected)}>
             {isSelected ? (
-                    <LinearGradient style={styles.container} colors={[COLORS.lightBlue, COLORS.violet]}>
-                            <Text color={COLORS.black} weight="700">{name}</Text>
+                    <LinearGradient style={styles.container} colors={[theme.lightBlue, theme.violet]}>
+                            <Text color={theme.black} weight="700">{name}</Text>
                     </LinearGradient>
             ) : (
                 <Container>
@@ -35,17 +36,17 @@ export default FilterButton;
 
 const Container = styled.View`
   padding: 8px 16px;
-  background-color: ${COLORS.blackSecondary};
-  border-radius: ${RADIUS.large};
+  background-color: ${theme.blackSecondary};
+  border-radius: ${theme.radius.large};
   margin: 0 6px;
 `;
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: PADDING.xSmall,
-        paddingHorizontal: PADDING.medium,
-        backgroundColor: COLORS.blackSecondary,
-        borderRadius: RADIUS.large,
+        paddingVertical: theme.spacing.xSmall,
+        paddingHorizontal: theme.spacing.medium,
+        backgroundColor: theme.blackSecondary,
+        borderRadius: theme.radius.large,
         marginHorizontal: 6,
     }
 })
