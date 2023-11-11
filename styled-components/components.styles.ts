@@ -1,25 +1,30 @@
 import styled, {DefaultTheme, useTheme} from "rn-css";
-import { COLORS } from "../constants/theme";
+import {theme} from "./theme";
 
 
-export const GlobalContainer = styled.View<{}>`
+export const OuterContainer = styled.View`
     flex: 1;
-  
+    width: auto;
 `;
 
-export const RowAlignedCenter = styled.View<{gap?: string, padding?:string, bg?:string, inline?:string}>`
-    flex-direction: row;
-    display: ${props => props.inline || 'flex'};
-    align-items: center;
-    gap: ${props => props.gap || '0px'};
-    padding: ${props => props.padding || '0px'};
+export const Box = styled.View<{bg?: string, padding?: string, width?: string, height?: string, gap?: string, justifyContent?: string, alignItems?: string}>`
     background-color: ${props => props.bg || 'transparent'};
+    padding: ${props => props.padding || '0px'};
+    width: ${props => props.width || 'auto'};
+    height: ${props => props.height || 'auto'};
+    gap: ${props => props.gap || '0px'};
+    justify-content: ${props => props.justifyContent || 'flex-start'};
+    align-items: ${props => props.alignItems || 'flex-start'};
 `;
 
-export const Row = styled(RowAlignedCenter)`
-  align-items: flex-start;
+export const Row = styled(Box)<{gap?: string}>`
+    flex-direction: row;
+    gap: ${props => props.gap || '0px'};
 `;
 
+export const Column = styled(Box)<{gap?: string}>`
+    gap: ${props => props.gap || '0px'};
+`;
 
 export const TouchableRow = styled.TouchableOpacity<{gap?: string, padding?:string, bg?:string}>`
     flex-direction: row;
@@ -29,30 +34,9 @@ export const TouchableRow = styled.TouchableOpacity<{gap?: string, padding?:stri
     background-color: ${props => props.bg || 'transparent'};
 `;
 
-export const Column = styled.View<{gap?: string, padding?: string, width?:string, bg?:string}>`
-    flex-direction: column;
-    width: ${props => props.width || '100%'};
-    background-color: ${props => props.bg || 'transparent'};
-    padding: ${props => props.padding || '0px'};
-    gap: ${props => props.gap || '0px'};
-  
-`;
 
 export const InlineColumn = styled(Column)`
   display: inline-flex;
-`;
-
-export const RowSpaceBetween = styled(RowAlignedCenter)`
-    justify-content: space-between;
-`;
-
-export const RowFlexEnd = styled(RowAlignedCenter)`
-    justify-content: flex-end;
-`;
-
-export const VerticalSpaceAround = styled.View`
-    height: 100%;
-    justify-content: space-around;
 `;
 
 export const ImageContainer = styled.View`
@@ -65,13 +49,13 @@ export const ImageContainer = styled.View`
 export const Title = styled.Text`
     font-weight: 400;
     font-size: 56px;
-    color: ${COLORS.white};
+    color: ${theme.white};
 `;
 
 export const Subtitle = styled.Text`
     font-weight: 500;
     font-size: 20px;
-    color: ${COLORS.lightergray};
+    color: ${theme.lightergray};
 `;
 
 export const TitleContainer = styled.View`
@@ -81,7 +65,7 @@ export const TitleContainer = styled.View`
 
 export const Text = styled.Text<{color?: string, size?: string, weight?: string}>`
     font-size: ${props => props.size || '16px'};
-    color: ${props => props.color || COLORS.white};
+    color: ${props => props.color || theme.white};
     font-weight: ${props => props.weight || 400};
 `;
 
@@ -96,12 +80,12 @@ export const IconContainer = styled.TouchableOpacity<{bg?: string, radius?: stri
 
 export const Border = styled.View<{color?:string, side?:string, width?:string}>`
     border-${props => props.side || 'bottom'}-width: ${props => props.width || '1px'};
-    border-color: ${props => props.color || COLORS.lightergray};
+    border-color: ${props => props.color || theme.lightergray};
 `;
 
 export const VerticalLine = styled.View<{color?:string, width?:string, height?:string}>`
     border-left-width: ${props => props.width || '1px'};
-    border-color: ${props => props.color || COLORS.lightergray};
+    border-color: ${props => props.color || theme.lightergray};
     align-self: center;
     box-sizing: content-box;
     height: ${props => props.height || '100%'};

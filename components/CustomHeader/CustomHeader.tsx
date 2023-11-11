@@ -3,15 +3,13 @@ import {useState} from "react";
 import ProjectModal from "../ProjectModal/ProjectModal";
 import {ProfileIcon, SecondaryContainer} from "./header.styles";
 import {
-    RowAlignedCenter,
     Text,
-    RowSpaceBetween,
     TouchableRow,
     Border,
     Column,
     Row, useMyTheme
 } from "../../styled-components/components.styles";
-import {View} from "react-native";
+import {SafeAreaView, View} from "react-native";
 import {theme} from "../../styled-components/theme";
 import CustomHeaderIcon from "../../assets/icons/CustomHeader/CustomHeaderIcon";
 
@@ -33,22 +31,22 @@ const CustomHeader = () => {
     }
 
     return (
-        <Row rnCSS="justify-content:center;">
-            <RowAlignedCenter rnCSS={"position:fixed; width:100vw;"} bg={theme.blackSecondary}>
-                <Border />
-                <RowSpaceBetween rnCSS="flex:1;" padding="20">
-                    <FontAwesome name="bars" size={24} color="white" />
-                    <TouchableRow gap="8px" onPress={() => {handleModalClick()}}>
-                        <Text size="18">Project name</Text>
-                        <CustomHeaderIcon />
-                    </TouchableRow>
-                    <ProfileIcon>
-                        <FontAwesome  name="user-circle" size={24} color="white" />
-                    </ProfileIcon>
-                </RowSpaceBetween>
-            </RowAlignedCenter>
-            {openProjectsModal && <ProjectModal projects={projects}/>}
-        </Row>
+            <Row rnCSS="box-sizing:content-box;">
+                <Row rnCSS={"padding-top:24px;width:100vw;"} bg={theme.blackSecondary}>
+                    <Border />
+                    <Row justifyContent="space-between" rnCSS="flex:1;" padding="20">
+                        <FontAwesome name="bars" size={24} color="white" />
+                        <TouchableRow gap="8px" onPress={() => {handleModalClick()}}>
+                            <Text size="18">Project name</Text>
+                            <CustomHeaderIcon />
+                        </TouchableRow>
+                        <ProfileIcon>
+                            <FontAwesome  name="user-circle" size={24} color="white" />
+                        </ProfileIcon>
+                    </Row>
+                </Row>
+                {openProjectsModal && <ProjectModal projects={projects}/>}
+            </Row>
     )
 
 }

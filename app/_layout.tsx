@@ -6,6 +6,7 @@ import {ThemeProvider} from "rn-css";
 import {theme} from "../styled-components/theme";
 import {ApolloClient, InMemoryCache, HttpLink, ApolloProvider} from '@apollo/client';
 import {GestureHandlerRootView} from "react-native-gesture-handler";
+import {Auth0Provider} from "react-native-auth0";
 
 const linearAPIKey = "lin_api_Ei5J2vVJrp6iDflmlYRuzwVuauEJbELfCMhhVqQL"
 const linearAPIUrl = "https://api.linear.app/graphql"
@@ -28,9 +29,9 @@ export default function RootLayoutNav() {
         <ThemeProvider theme={theme}>
             <ApolloProvider client={client}>
                 <Provider store={store}>
-                    <GestureHandlerRootView>
+                    <Auth0Provider domain={"tricker.us.auth0.com"} clientId={"qwqsA0dr25VN1masSNqqGpLEiCFdDFdQ"}>
                         <Slot />
-                    </GestureHandlerRootView>
+                    </Auth0Provider>
                 </Provider>
             </ApolloProvider>
         </ThemeProvider>

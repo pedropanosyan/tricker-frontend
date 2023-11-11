@@ -1,28 +1,27 @@
 import {FlatList, View} from "react-native";
-import TicketCard from "../../components/TicketCard/TicketCard";
-import FilterButton from "./components/FilterButton";
-import { Column, RowAlignedCenter } from "../../styled-components/components.styles";
+import {Box, Column, OuterContainer, Row} from "../../styled-components/components.styles";
 import {TicketsContainer, TimerContainer} from "./styles.components";
-import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
-import { STATUS } from "../../constants/types";
-import {useEffect, useRef, useState} from "react";
-import Timer from "../../components/Timer/Timer";
-import {useTimer} from "../../hooks/useTimer";
-import ExpandedTicket from "../../components/ExpandedTicket/ExpandedTicket";
+import {JSX, useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../store/store";
+import BottomSheet, {BottomSheetBackdrop} from "@gorhom/bottom-sheet";
+import {any} from "prop-types";
 import {theme} from "../../styled-components/theme";
-import {formatTime} from "../../utils/helpers";
-import {stopTimer} from "../../store/features/timerSlice";
-import {PanGestureHandler} from "react-native-gesture-handler";
+import FilterButton from "./components/FilterButton";
+import TicketCard from "../../components/TicketCard/TicketCard";
+import {STATUS} from "../../constants/types";
+import ExpandedTicket from "../../components/ExpandedTicket/ExpandedTicket";
+import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
+import Timer from "../../components/Timer/Timer";
+import {
+    BottomSheetDefaultBackdropProps
+} from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
+import CustomHeader from "../../components/CustomHeader/CustomHeader";
 
 
 const Home = () => {
 
-    const timerContainerRef = useRef(null);
-    const expandedTicketRef = useRef(null);
-    const containerRef = useRef<any>();
+    const [showBottomSheet, setShowBottomSheet] = useState(false);
 
-    const [showExpandedInfo, setShowExpandedInfo] = useState(false)
     const options = [
         {
             name: "All",
@@ -49,66 +48,120 @@ const Home = () => {
             selected: false,
         }
     ]
+    const ticketData = [
+        {
+            id: "1",
+            status: STATUS.COMPLETED,
+            title: 'Ticket long long very long name',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
+        },
+        {
+            id: "2",
+            status: STATUS.REVIEW,
+            title: 'Ticket long long very long name',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
+        },
+        {
+            id: "3",
+            status: STATUS.IN_PROGRESS,
+            title: 'Ticket long long very long name',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
+        },
+        {
+            id: "4",
+            status: STATUS.TODO,
+            title: 'Ticket long long very long name',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
+        },
+        {
+            id: "5",
+            status: STATUS.COMPLETED,
+            title: 'Ticket long long very long name',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
+        },
+    ];
+    const snapPoints = useMemo(() => ['50%', '85%'], []);
+
+    const bottomSheetRef = useRef<BottomSheet>(null);
+
+    const handleSwipeDown = () => bottomSheetRef.current?.close();
+
+    const handleSwipe = () => {
+        if (showBottomSheet) {
+            bottomSheetRef.current?.close()
+            setShowBottomSheet(false)
+        }
+        else {
+            bottomSheetRef.current?.expand()
+            setShowBottomSheet(true)
+        }
+    };
 
     const user = useAppSelector((state) => state.user);
     const timer = useAppSelector((state) => state.timer);
 
-
-    const onSwipeUp = (event: { nativeEvent: { translationY: number } }) => {
-        if (event.nativeEvent.translationY < -100) {
-            setShowExpandedInfo(true);
-        }
-    };
-
-    const onSwipeDown = (event: { nativeEvent: { translationY: number } }) => {
-        if (event.nativeEvent.translationY > -100) {
-            setShowExpandedInfo(false);
-        }
-    };
-
+    const renderBackdrop = useCallback(
+        (props: JSX.IntrinsicAttributes & BottomSheetDefaultBackdropProps) => (
+            <BottomSheetBackdrop
+                {...props}
+                appearsOnIndex={1}
+            />
+        ),
+        []
+    );
 
     return (
-        <View>
-            <Column rnCSS="margin-top:69px;" bg={theme.black}>
-                <RowAlignedCenter rnCSS="margin-vertical=16px; margin-horizontal:4px;">
+        <OuterContainer>
+            <CustomHeader />
+            <Box bg={theme.black}>
+                <Row width="100%"  alignItems="center" rnCSS="margin-vertical=16px;">
                     <FlatList data={options} renderItem={
                         ({item}) => (
                             <FilterButton name={item.name} selected={item.selected} />
                         )}
                         horizontal
                     />
-                </RowAlignedCenter>
+                </Row>
                 <TicketsContainer clockActive={timer.show}>
-                    <TicketCard id={"1"} status={STATUS.COMPLETED} title={user.name}
-                                description={user.id}/>
-                    <TicketCard id={"2"} status={STATUS.REVIEW} title={user.token}
-                                description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.'}/>
-                    <TicketCard id={"3"} status={STATUS.IN_PROGRESS} title={'Ticket long long very long name'}
-                                description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.'}/>
-                    <TicketCard id={"4"} status={STATUS.TODO} title={'Ticket long long very long name'}
-                                description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.'}/>
-                    <TicketCard id={"5"} status={STATUS.COMPLETED} title={'Ticket long long very long name'}
-                                description={'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.'}/>
+                    <FlatList
+                        data={ticketData}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }) => (
+                            <TicketCard
+                                id={item.id}
+                                status={item.status}
+                                title={item.title}
+                                description={item.description}
+                            />
+                        )}
+                    />
                 </TicketsContainer>
-                {timer.show &&
-                    <PanGestureHandler minDist={5} onGestureEvent={onSwipeUp}>
-                        <TimerContainer ref={containerRef}>
+                {timer.show && (
+                    <>
+                        {showBottomSheet && (
+                            <BottomSheet
+                                enablePanDownToClose={true}
+                                ref={bottomSheetRef}
+                                snapPoints={snapPoints}
+                                index={1}
+                                backgroundStyle={{backgroundColor: theme.black}}
+                                handleStyle={{backgroundColor: theme.black}}
+                                handleIndicatorStyle={{backgroundColor: theme.backgroundGray}}
+                                backdropComponent={renderBackdrop}
+                            >
+                                <ExpandedTicket/>
+                            </BottomSheet>
+                        )}
+                        <TimerContainer onPress={handleSwipe}>
                             <Timer />
                         </TimerContainer>
-                    </PanGestureHandler>
-                }
-                {showExpandedInfo &&
-                    <PanGestureHandler minDist={5} onGestureEvent={onSwipeDown}>
-                        <ExpandedTicket />
-                    </PanGestureHandler>
-                }
+                    </>
+                )}
                 <BottomNavbar />
-            </Column>
-        </View>
+            </Box>
+        </OuterContainer>
 
     )
-
-
 }
 
 export default Home;

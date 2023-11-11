@@ -1,72 +1,44 @@
-import {View} from "react-native"
-import * as WebBrowser from "expo-web-browser";
-import * as Google from "expo-auth-session/providers/google";
+import {Alert, View } from "react-native"
 import TrickerIcon from "../../assets/icons/components/TrickerIcon";
 import GoogleIcon from "../../assets/icons/components/GoogleIcon";
 import {LinearGradient} from "expo-linear-gradient";
-import {useEffect, useState} from "react";
-import { router } from 'expo-router';
 import {
-    GlobalContainer,
-    ImageContainer, RowAlignedCenter,
+    ImageContainer,
     Subtitle,
     Title, TitleContainer,
-    VerticalSpaceAround, Text, useMyTheme, Row
+    Text, useMyTheme, Row, OuterContainer, Box
 } from "../../styled-components/components.styles";
 import {LoginButton} from "./login.styles";
-import {useAppDispatch} from "../../store/store";
-import {addUser} from "../../store/features/userSlice";
-
-WebBrowser.maybeCompleteAuthSession();
+import { useAuth0 } from "react-native-auth0";
 
 const Login = () => {
 
-    const dispatch = useAppDispatch();
-    const theme = useMyTheme();
-    const [accessToken, setAccessToken] = useState<string>('')
+    const {authorize, user, error, getCredentials, isLoading} = useAuth0();
 
-    const [request, response, promptAsync] = Google.useAuthRequest({
-        iosClientId: "823502041656-n7ev10pcpttq2db9h5b0f069mqbpdokl.apps.googleusercontent.com",
-        webClientId: "823502041656-6d8tl1h84k4qdti7te45t7coskgu2b1g.apps.googleusercontent.com",
-    });
-
-    useEffect(() => {
-        if (response?.type === 'success') {
-            setAccessToken(response?.authentication?.accessToken ?? '');
-            accessToken && fetchUserInfo()
-
+    const onLogin = async () => {
+        try {
+            await authorize();
+            let credentials = await getCredentials();
+            Alert.alert('AccessToken: ' + credentials?.accessToken);
+        } catch (e) {
+            console.log(e);
         }
-    }, [response, accessToken]);
+    };
 
-    const fetchUserInfo = async () => {
-      const response = await fetch('https://www.googleapis.com/userinfo/v2/me', {
-            headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
-        });
-      const userInfo = await response.json();
-      const dataToSend = { id: userInfo.id, name: userInfo.name, email: userInfo.email, token: accessToken };
-      try {
-          // const res = await fetch('http://localhost:8080/api/auth/login', {
-          //     method: 'POST',
-          //     headers: { 'Content-Type': 'application/json' },
-          //     body: JSON.stringify(dataToSend)
-          // })
-          dispatch(addUser(dataToSend))
-          router.replace('/home')
-      } catch (e) {
-          console.log(e)
-      }
+
+    if (isLoading) {
+        return <View><Text>Loading</Text></View>;
     }
 
     return (
+        <View style={{backgroundColor: "black"}}>
         <LinearGradient
             colors={['#006600', '#000000', '#330000', '#000066']}
             start={{x: 0, y: 0}}
             end={{x: 1, y: 1}}
         >
-            <GlobalContainer>
-                <VerticalSpaceAround>
+            <OuterContainer>
+                <Box alignItems="space-around">
                     <View>
                         <ImageContainer>
                             <TrickerIcon size={108} color={"white"} />
@@ -77,14 +49,15 @@ const Login = () => {
                         </TitleContainer>
                     </View>
                     <Row rnCSS="align-self=center;">
-                        <LoginButton onPress={() => promptAsync()}>
+                        <LoginButton onPress={() => onLogin()}>
                             <GoogleIcon  color={"white"} size={20}/>
                             <Text size="18">Continue with google</Text>
                         </LoginButton>
                     </Row>
-                </VerticalSpaceAround>
-            </GlobalContainer>
+                </Box>
+            </OuterContainer>
         </LinearGradient>
+        </View>
     )
 
 }

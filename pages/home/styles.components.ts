@@ -1,21 +1,21 @@
 import styled from "rn-css";
-import {COLORS} from "../../constants/theme";
+import {theme} from "../../styled-components/theme";
 
 export const TicketsContainer = styled.View<{clockActive: boolean}>`
   width: 90vw;
   align-self: center;
   overflow: scroll;
   gap: 16px;
-  margin-bottom: ${props => props.clockActive ? '100px' : '8px'};
+  margin-bottom: ${props => props.clockActive ? '156px' : '64px'};
 `;
 
-export const TimerContainer = styled.View`
+export const TimerContainer = styled.TouchableHighlight`
     width: 100vw;
     position: fixed;
     align-self: center;
     flex: 1;
     bottom: 55px;
-    background-color: ${COLORS.blackSecondary};
+    background-color: ${theme.blackSecondary};
     backdrop-filter: blur(12px);
 
 `;

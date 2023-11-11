@@ -3,10 +3,7 @@ import Ticket1 from "../../assets/icons/ticket/Ticket1";
 import Ticket2 from "../../assets/icons/ticket/Ticket2";
 import PlayIcon from "../../assets/icons/Timer/PlayIcon";
 import {
-    IconContainer,
-    RowAlignedCenter,
-    RowFlexEnd,
-    RowSpaceBetween,
+    IconContainer, Row,
     Text,
     useMyTheme
 } from "../../styled-components/components.styles";
@@ -14,14 +11,8 @@ import {StatusContainer, TicketContainer} from "./components.styles";
 import {STATUS, STATUS_COLORS, STATUS_ICONS} from "../../constants/types";
 import {useTimer} from "../../hooks/useTimer";
 import StopIcon from "../../assets/icons/Timer/StopIcon";
-import Timer from "../Timer/Timer";
-import {TimerContainer} from "../../pages/home/styles.components";
-import {DefaultTheme, useTheme} from "rn-css";
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import {resetTimer, startTimer, stopTimer} from "../../store/features/timerSlice";
-import {useEffect} from "react";
-import TimerIcon from "../../assets/icons/Timer/TimerIcon";
-
 
 interface TicketCardProps {
     id: string;
@@ -36,7 +27,6 @@ const TicketCard = ({status, title, description, id}: TicketCardProps) => {
     const theme = useMyTheme();
 
     const color = STATUS_COLORS[status];
-    console.log(color)
     const timer = useAppSelector((state) => state.timer);
 
     const {startTime, stopTime, resetTime} = useTimer();
@@ -57,17 +47,17 @@ const TicketCard = ({status, title, description, id}: TicketCardProps) => {
     }
 
     return (
-        <View>
-            <RowFlexEnd>
+        <View style={{paddingTop: 12}}>
+            <Row justifyContent="flex-end">
                 <StatusContainer bg={color}>
                     <Text size="12" weight="500" color={theme.black}>{status}</Text>
                 </StatusContainer>
-            </RowFlexEnd>
+            </Row>
             <TicketContainer color={color}>
                 <Text size="16" weight="700">{title}</Text>
                 <Text size="16">{description}</Text>
-                <RowSpaceBetween>
-                    <RowAlignedCenter gap="8px">
+                <Row justifyContent={"space-between"} alignItems="center">
+                    <Row alignItems="center" width="auto" gap="8px">
                         <IconContainer padding="0" radius="0" bg={color}>
                             <Ticket1 />
                         </IconContainer>
@@ -77,7 +67,7 @@ const TicketCard = ({status, title, description, id}: TicketCardProps) => {
                         <IconContainer padding="4" bg={theme.backgroundGray}>
                             <Text rnCSS="padding:0 6px;" size={"16"} weight={"700"}>5</Text>
                         </IconContainer>
-                    </RowAlignedCenter>
+                    </Row>
                     {status === STATUS.COMPLETED ? (
                         <IconContainer bg={color}>
                             {STATUS_ICONS[status]}
@@ -90,7 +80,7 @@ const TicketCard = ({status, title, description, id}: TicketCardProps) => {
                                <PlayIcon color={theme.black}/>
                             </IconContainer>
                             ))}
-                </RowSpaceBetween>
+                </Row>
             </TicketContainer>
         </View>
     )

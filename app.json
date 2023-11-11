@@ -32,7 +32,13 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "react-native-auth0",
+        {
+          "domain": "tricker.us.auth0.com"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

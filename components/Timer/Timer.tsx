@@ -7,9 +7,7 @@ import {COLORS, PADDING, RADIUS, WEIGHTS} from "../../constants/theme";
 import {useEffect, useRef, useState} from "react";
 import StopIcon from "../../assets/icons/Timer/StopIcon";
 import {
-    IconContainer,
-    RowAlignedCenter,
-    RowSpaceBetween,
+    IconContainer, Row,
     Text,
     useMyTheme
 } from "../../styled-components/components.styles"
@@ -54,12 +52,12 @@ const Timer = () => {
     }
 
     return (
-        <RowSpaceBetween rnCSS="backdrop-filter: blur(12px);" padding="16">
+        <Row justifyContent="space-between" rnCSS="backdrop-filter: blur(12px);" padding="16">
             <View>
                 <Text size="16" weight="500" color={theme.lightgray}>TKT-000</Text>
                 <Text size="26" weight="500">{formatTime(timer.time)}</Text>
             </View>
-            <RowAlignedCenter gap="16">
+            <Row alignItems="center" gap="16">
                 <IconContainer onPress={() => handleSubmit()}>
                     <AddIcon />
                 </IconContainer>
@@ -79,8 +77,8 @@ const Timer = () => {
                     </LinearGradient>
                 </IconContainer>
                 )}
-            </RowAlignedCenter>
-        </RowSpaceBetween>
+            </Row>
+        </Row>
     )
 
 }
