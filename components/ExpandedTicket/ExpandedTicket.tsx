@@ -1,5 +1,6 @@
 import {FlatList, View} from "react-native";
 import {
+    Box,
     Column,
     IconContainer,
     Row,
@@ -63,8 +64,8 @@ const ExpandedTicket = () => {
     const theme = useMyTheme();
 
     return (
-        <Column>
-            <Column gap={"40px"} padding="16px" bg={theme.black}>
+        <Box rnCSS="position:fixed;" bg={theme.lightBlue}>
+            <Box gap={"40px"} padding="16px" bg={theme.black}>
                 <Column gap="16px">
                     <Text weight={"700"} size={"24px"}>Ticket long long name</Text>
                     <Text color={theme.textGray}>TIK-000</Text>
@@ -90,8 +91,8 @@ const ExpandedTicket = () => {
                         renderItem={({ item }) => <Event data={item} />}
                     />
                 </Column>
-            </Column>
-        </Column>
+            </Box>
+        </Box>
         )
 }
 

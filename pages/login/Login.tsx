@@ -21,8 +21,10 @@ const Login = () => {
         try {
             await authorize();
             let credentials = await getCredentials();
-            if (credentials) { router.push("/(home)") }
-
+            if (credentials) {
+                Alert.alert(credentials.accessToken)
+                router.push("/(home)") }
+            else { Alert.alert("No credentials") }
         } catch (e) {
             console.log(e);
         }

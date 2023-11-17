@@ -27,7 +27,7 @@ const Project = ({ name }: ProjectProps) => {
 const ProjectModal = ({projects}: ProjectArray) => {
 
     return (
-        <Box padding="8px" height="250px" width="200px" bg={theme.lightgray} rnCSS="border-radius:16;">
+        <Box padding="8px" height="250px" width="200px" bg={theme.lightgray} rnCSS="position:fixed;top:0;border-radius:16;align-self:center;">
             <FlatList data={projects}
                       renderItem={
                             ({item}) => <Project name={item.name} />

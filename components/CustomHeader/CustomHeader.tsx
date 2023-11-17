@@ -47,9 +47,7 @@ const CustomHeader = () => {
                 </Row>
             </Row>
             {openProjectsModal &&
-                <Box rnCSS="align-self:center;">
-                    <ProjectModal projects={projects}/>
-                </Box>
+                <ProjectModal projects={projects}/>
             }
         </Box>
     )

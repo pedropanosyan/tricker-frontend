@@ -80,16 +80,20 @@ const Home = () => {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
         },
     ];
+
     const snapPoints = useMemo(() => ['50%', '85%'], []);
 
     const bottomSheetRef = useRef<BottomSheet>(null);
 
     const handleSwipe = () => {
+        console.log("swipe")
         if (showBottomSheet) {
+            console.log("close")
             bottomSheetRef.current?.close()
             setShowBottomSheet(false)
         }
         else {
+            console.log("expand")
             bottomSheetRef.current?.expand()
             setShowBottomSheet(true)
         }
@@ -136,8 +140,8 @@ const Home = () => {
             </Box>
             <Box width="100vw" rnCSS="position:absolute;bottom:0;">
                 {timer.show && (
-                    <>
-                        {showBottomSheet && (
+                    <View>
+                         {showBottomSheet && (
                             <BottomSheet
                                 enablePanDownToClose={true}
                                 ref={bottomSheetRef}
@@ -148,13 +152,13 @@ const Home = () => {
                                 handleIndicatorStyle={{backgroundColor: theme.backgroundGray}}
                                 backdropComponent={renderBackdrop}
                             >
-                                <ExpandedTicket/>
+                                    <ExpandedTicket/>
                             </BottomSheet>
                         )}
                         <TimerContainer onPress={handleSwipe}>
                             <Timer />
                         </TimerContainer>
-                    </>
+                    </View>
                 )}
                 <BottomNavbar />
             </Box>
