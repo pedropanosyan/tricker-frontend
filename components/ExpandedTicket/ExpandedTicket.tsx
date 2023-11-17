@@ -5,7 +5,7 @@ import {
     Row,
     Text,
     useMyTheme, VerticalLine
-} from "../../styled-components/components.styles";
+} from "../../styled-components/styles";
 import Ticket1 from "../../assets/icons/ticket/Ticket1";
 import Ticket2 from "../../assets/icons/ticket/Ticket2";
 import PointIcon from "../../assets/icons/ticket/Point";

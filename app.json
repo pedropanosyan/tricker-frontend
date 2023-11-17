@@ -36,7 +36,7 @@
       [
         "react-native-auth0",
         {
-          "domain": "tricker.us.auth0.com"
+          "domain": "auth-tricker.us.auth0.com"
         }
       ]
     ],

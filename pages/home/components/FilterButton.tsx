@@ -1,7 +1,7 @@
 import {StyleSheet, TouchableOpacity, View} from "react-native";
 import {LinearGradient} from "expo-linear-gradient";
 import {useState} from "react";
-import {Text} from "../../../styled-components/components.styles";
+import {Text} from "../../../styled-components/styles";
 import styled from "rn-css";
 import {theme} from "../../../styled-components/theme";
 import {isNotTestHost} from "@expo/config-plugins/build/ios/utils/Xcodeproj";

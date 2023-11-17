@@ -1,7 +1,7 @@
 import {Stack, useRouter} from "expo-router";
 import CustomHeader from "../../components/CustomHeader/CustomHeader";
 import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
-import {Row, Text, useMyTheme} from "../../styled-components/components.styles";
+import {Row, Text, useMyTheme} from "../../styled-components/styles";
 
 export default () => {
 
@@ -28,7 +28,7 @@ const ProfileHeader = () => {
 
 
     return (
-        <Row alignItems="center" justifyContent="center" padding="16px" bg={theme.black}>
+        <Row rnCSS="padding-top:36px;" alignItems="center" justifyContent="center" padding="16px" bg={theme.black}>
             <Text size="18px">My account</Text>
         </Row>
     )

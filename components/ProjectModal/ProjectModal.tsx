@@ -1,7 +1,7 @@
 import {FlatList, TouchableOpacity, View} from "react-native";
 import ProjectLogo from "../../assets/icons/components/ProjectLogo";
-import {Row, Text, useMyTheme} from "../../styled-components/components.styles";
-import {ModalContainer} from "./styles.components";
+import {Box, Row, Text, useMyTheme} from "../../styled-components/styles";
+import {theme} from "../../styled-components/theme";
 
 interface ProjectProps {
     name: string;
@@ -12,7 +12,7 @@ interface ProjectArray {
     projects: ProjectProps[];
 }
 
-const Project = ({name, image}: ProjectProps) => {
+const Project = ({ name }: ProjectProps) => {
 
     const theme = useMyTheme();
 
@@ -27,12 +27,12 @@ const Project = ({name, image}: ProjectProps) => {
 const ProjectModal = ({projects}: ProjectArray) => {
 
     return (
-        <ModalContainer>
+        <Box padding="8px" height="250px" width="200px" bg={theme.lightgray} rnCSS="border-radius:16;">
             <FlatList data={projects}
                       renderItem={
                             ({item}) => <Project name={item.name} />
                       } />
-        </ModalContainer>
+        </Box>
     )
 }
 

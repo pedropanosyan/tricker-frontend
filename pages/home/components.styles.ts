@@ -6,14 +6,14 @@ export const TicketsContainer = styled.View<{clockActive: boolean}>`
   align-self: center;
   overflow: scroll;
   gap: 16px;
-  margin-bottom: ${props => props.clockActive ? '156px' : '64px'};
+  // margin-bottom: ${props => props.clockActive ? '156px' : '56px'};
+  max-height: ${props => props.clockActive ? '70vh' : '78vh'};
 `;
 
 export const TimerContainer = styled.TouchableHighlight`
     width: 100vw;
     position: fixed;
     align-self: center;
-    flex: 1;
     bottom: 55px;
     background-color: ${theme.blackSecondary};
     backdrop-filter: blur(12px);

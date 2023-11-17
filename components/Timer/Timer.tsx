@@ -10,7 +10,7 @@ import {
     IconContainer, Row,
     Text,
     useMyTheme
-} from "../../styled-components/components.styles"
+} from "../../styled-components/styles"
 import {useTimer} from "../../hooks/useTimer";
 import {TimerInterface} from "../../constants/interfaces";
 import {useAppDispatch, useAppSelector} from "../../store/store";

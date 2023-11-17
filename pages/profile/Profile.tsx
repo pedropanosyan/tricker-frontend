@@ -1,7 +1,7 @@
-import {Box, Column, OuterContainer, Row, Text, useMyTheme} from "../../styled-components/components.styles";
-import {Image, SafeAreaView, View} from "react-native";
+import {Box, Column, OuterContainer, Row, Text, useMyTheme} from "../../styled-components/styles";
+import {SafeAreaView, View} from "react-native";
 import BottomNavbar from "../../components/BottomNavbar/BottomNavbar";
-import {StatusBox, StatusNumber, StatusText} from "./profile.styles";
+import {ImageContainer, StatusBox, StatusNumber, StatusText, Image} from "./profile.styles";
 
 const Profile = () => {
 
@@ -9,13 +9,12 @@ const Profile = () => {
 
     return (
         <OuterContainer>
-            <Column bg={theme.gray} rnCSS="height:15vh;">
-                <View style={{ top: 56, position: "absolute", alignSelf: "center", borderRadius: 50 }}>
+            <Column bg={theme.gray} rnCSS="height:12vh;padding-top:16px;">
+                <ImageContainer>
                     <Image
-                        style={{ width: 100, height: 100, borderRadius: 50, alignSelf: "center" }}
                         source={require('../../assets/images/profile-image.png')}
                     />
-                </View>
+                </ImageContainer>
 
             </Column>
             <Box alignItems="center" rnCSS="height:75vh;z-index:-1;" bg={theme.black}>

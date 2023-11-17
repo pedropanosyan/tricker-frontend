@@ -2,8 +2,9 @@ import styled, {DefaultTheme, useTheme} from "rn-css";
 import {theme} from "./theme";
 
 
-export const OuterContainer = styled.View`
+export const OuterContainer = styled.View<{bg?: string}>`
     flex: 1;
+    background-color: ${props => props.bg || theme.black};
     width: auto;
 `;
 
@@ -11,7 +12,6 @@ export const Box = styled.View<{bg?: string, padding?: string, width?: string, h
     background-color: ${props => props.bg || 'transparent'};
     padding: ${props => props.padding || '0px'};
     width: ${props => props.width || 'auto'};
-    height: ${props => props.height || 'auto'};
     gap: ${props => props.gap || '0px'};
     justify-content: ${props => props.justifyContent || 'flex-start'};
     align-items: ${props => props.alignItems || 'flex-start'};

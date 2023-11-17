@@ -7,11 +7,10 @@ import {
     TouchableRow,
     Border,
     Column,
-    Row, useMyTheme
-} from "../../styled-components/components.styles";
-import {SafeAreaView, View} from "react-native";
-import {theme} from "../../styled-components/theme";
+    Row, useMyTheme, Box
+} from "../../styled-components/styles";
 import CustomHeaderIcon from "../../assets/icons/CustomHeader/CustomHeaderIcon";
+import {View} from "react-native";
 
 const projects = [
     {name: "Project 1", image: "image"},
@@ -31,8 +30,9 @@ const CustomHeader = () => {
     }
 
     return (
-            <Row rnCSS="box-sizing:content-box;">
-                <Row rnCSS={"padding-top:24px;width:100vw;"} bg={theme.blackSecondary}>
+        <Box>
+            <Row bg={theme.blackSecondary} rnCSS="z-index:10;position:fixed;box-sizing:content-box;">
+                <Row bg={theme.blackSecondary} rnCSS={"padding-top:24px;width:100vw;"} >
                     <Border />
                     <Row justifyContent="space-between" rnCSS="flex:1;" padding="20">
                         <FontAwesome name="bars" size={24} color="white" />
@@ -45,8 +45,13 @@ const CustomHeader = () => {
                         </ProfileIcon>
                     </Row>
                 </Row>
-                {openProjectsModal && <ProjectModal projects={projects}/>}
             </Row>
+            {openProjectsModal &&
+                <Box rnCSS="align-self:center;">
+                    <ProjectModal projects={projects}/>
+                </Box>
+            }
+        </Box>
     )
 
 }

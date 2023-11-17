@@ -6,7 +6,7 @@ import {
     IconContainer, Row,
     Text,
     useMyTheme
-} from "../../styled-components/components.styles";
+} from "../../styled-components/styles";
 import {StatusContainer, TicketContainer} from "./components.styles";
 import {STATUS, STATUS_COLORS, STATUS_ICONS} from "../../constants/types";
 import {useTimer} from "../../hooks/useTimer";

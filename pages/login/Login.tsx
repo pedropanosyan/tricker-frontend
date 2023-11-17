@@ -7,28 +7,26 @@ import {
     Subtitle,
     Title, TitleContainer,
     Text, useMyTheme, Row, OuterContainer, Box
-} from "../../styled-components/components.styles";
+} from "../../styled-components/styles";
 import {LoginButton} from "./login.styles";
 import { useAuth0 } from "react-native-auth0";
+import {useRouter} from "expo-router";
 
 const Login = () => {
 
+    const router = useRouter();
     const {authorize, user, error, getCredentials, isLoading} = useAuth0();
 
     const onLogin = async () => {
         try {
             await authorize();
             let credentials = await getCredentials();
-            Alert.alert('AccessToken: ' + credentials?.accessToken);
+            if (credentials) { router.push("/(home)") }
+
         } catch (e) {
             console.log(e);
         }
     };
-
-
-    if (isLoading) {
-        return <View><Text>Loading</Text></View>;
-    }
 
     return (
         <View style={{backgroundColor: "black"}}>

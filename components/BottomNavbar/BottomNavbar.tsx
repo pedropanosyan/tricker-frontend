@@ -1,4 +1,4 @@
-import {IconContainer, useMyTheme} from "../../styled-components/components.styles";
+import {IconContainer, useMyTheme} from "../../styled-components/styles";
 import GoBack from "../../assets/icons/BottomNavbar/GoBack";
 import HomeIcon from "../../assets/icons/BottomNavbar/Home";
 import GoBackIcon from "../../assets/icons/BottomNavbar/GoBack";
@@ -24,7 +24,7 @@ const BottomNavbar = () => {
     }
 
     return (
-        <BottomNavbarContainer>
+        <BottomNavbarContainer >
             <IconContainer radius="8px">
                 <GoBackIcon />
             </IconContainer>
@@ -47,11 +47,11 @@ export default BottomNavbar;
 
 export const BottomNavbarContainer = styled.View`
     background-color: ${theme.blackSecondary};
+    position: absolute;
+    bottom: 0;
     padding: 4px 24px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    bottom: 0;
     width: 100%;
 `;

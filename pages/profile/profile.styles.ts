@@ -23,3 +23,15 @@ export const StatusText = styled.Text<{color: string}>`
     font-size: 12px;
     color: ${props => props.color};
 `;
+
+export const ImageContainer = styled.View`
+    top: 56px;
+    position: absolute;
+    align-self: center;
+`;
+
+export const Image = styled.Image`
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+`;

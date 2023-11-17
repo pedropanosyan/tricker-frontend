@@ -1,6 +1,6 @@
 import {FlatList, View} from "react-native";
-import {Box, Column, OuterContainer, Row} from "../../styled-components/components.styles";
-import {TicketsContainer, TimerContainer} from "./styles.components";
+import {Box, Column, OuterContainer, Row} from "../../styled-components/styles";
+import {TicketsContainer, TimerContainer} from "./components.styles";
 import {JSX, useCallback, useEffect, useMemo, useRef, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import BottomSheet, {BottomSheetBackdrop} from "@gorhom/bottom-sheet";
@@ -84,8 +84,6 @@ const Home = () => {
 
     const bottomSheetRef = useRef<BottomSheet>(null);
 
-    const handleSwipeDown = () => bottomSheetRef.current?.close();
-
     const handleSwipe = () => {
         if (showBottomSheet) {
             bottomSheetRef.current?.close()
@@ -97,7 +95,6 @@ const Home = () => {
         }
     };
 
-    const user = useAppSelector((state) => state.user);
     const timer = useAppSelector((state) => state.timer);
 
     const renderBackdrop = useCallback(
@@ -114,7 +111,7 @@ const Home = () => {
         <OuterContainer>
             <CustomHeader />
             <Box bg={theme.black}>
-                <Row width="100%"  alignItems="center" rnCSS="margin-vertical=16px;">
+                <Row width="100%" alignItems="center" rnCSS="margin-vertical=16px;margin-top:18;">
                     <FlatList data={options} renderItem={
                         ({item}) => (
                             <FilterButton name={item.name} selected={item.selected} />
@@ -136,6 +133,8 @@ const Home = () => {
                         )}
                     />
                 </TicketsContainer>
+            </Box>
+            <Box width="100vw" rnCSS="position:absolute;bottom:0;">
                 {timer.show && (
                     <>
                         {showBottomSheet && (
@@ -160,7 +159,6 @@ const Home = () => {
                 <BottomNavbar />
             </Box>
         </OuterContainer>
-
     )
 }
 

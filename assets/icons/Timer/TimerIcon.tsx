@@ -1,5 +1,5 @@
 import {useAppDispatch, useAppSelector} from "../../../store/store";
-import {IconContainer} from "../../../styled-components/components.styles";
+import {IconContainer} from "../../../styled-components/styles";
 import StopIcon from "./StopIcon";
 import {resetTimer, startTimer, stopTimer} from "../../../store/features/timerSlice";
 import {useTimer} from "../../../hooks/useTimer";
