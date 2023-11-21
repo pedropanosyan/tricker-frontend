@@ -11,6 +11,7 @@ import {
 } from "../../styled-components/styles";
 import CustomHeaderIcon from "../../assets/icons/CustomHeader/CustomHeaderIcon";
 import {View} from "react-native";
+import {Portal} from "@gorhom/portal";
 
 const projects = [
     {name: "Project 1", image: "image"},
@@ -19,14 +20,13 @@ const projects = [
     {name: "Project 4", image: "image"},
 ]
 
-
 const CustomHeader = () => {
 
-    const [openProjectsModal, setOpenProjectsModal] = useState(false)
     const theme = useMyTheme();
+    const [showModal, setShowModal] = useState(false);
 
-    const handleModalClick = () => {
-      setOpenProjectsModal(!openProjectsModal)
+    const toggleModal = () => {
+        setShowModal(!showModal);
     }
 
     return (
@@ -36,7 +36,7 @@ const CustomHeader = () => {
                     <Border />
                     <Row justifyContent="space-between" rnCSS="flex:1;" padding="20">
                         <FontAwesome name="bars" size={24} color="white" />
-                        <TouchableRow gap="8px" onPress={() => {handleModalClick()}}>
+                        <TouchableRow gap="8px" onPress={() => toggleModal()}>
                             <Text size="18">Project name</Text>
                             <CustomHeaderIcon />
                         </TouchableRow>
@@ -46,8 +46,10 @@ const CustomHeader = () => {
                     </Row>
                 </Row>
             </Row>
-            {openProjectsModal &&
-                <ProjectModal projects={projects}/>
+            {showModal &&
+                <Portal name="projectModal">
+                    <ProjectModal projects={projects}/>
+                </Portal>
             }
         </Box>
     )

@@ -14,58 +14,13 @@ import Timer from "../Timer/Timer";
 import {theme} from "../../styled-components/theme";
 import {BottomSheetFlatList} from "@gorhom/bottom-sheet";
 
-const ExpandedTicket = () => {
-
-    const data = [
-        {
-            id: 1,
-            date: "21/03/23",
-            time: "12:05",
-            title: "Se comenzó el ticket",
-            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
-        },
-        {
-            id: 2,
-            date: "21/03/23",
-            time: "12:05",
-            title: "Se comenzó el ticket",
-            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
-        },
-        {
-            id: 3,
-            date: "21/03/23",
-            time: "12:05",
-            title: "Se comenzó el ticket",
-            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
-        },
-        {
-            id: 4,
-            date: "21/03/23",
-            time: "12:05",
-            title: "Se comenzó el ticket",
-            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
-        },
-        {
-            id:5,
-            date: "21/03/23",
-            time: "12:05",
-            title: "Se comenzó el ticket",
-            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
-        },
-        {
-            id:6,
-            date: "21/03/23",
-            time: "12:05",
-            title: "Se comenzó el ticket",
-            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
-        },
-    ];
+const ExpandedTicket = ({data}: any) => {
 
     const theme = useMyTheme();
 
     return (
-        <Box rnCSS="position:fixed;" bg={theme.lightBlue}>
-            <Box gap={"40px"} padding="16px" bg={theme.black}>
+        <Box width="100%" height="100%" bg={theme.black} rnCSS="z-index:10; position:relative;">
+            <Box gap={"40px"} padding="16px">
                 <Column gap="16px">
                     <Text weight={"700"} size={"24px"}>Ticket long long name</Text>
                     <Text color={theme.textGray}>TIK-000</Text>
@@ -83,14 +38,14 @@ const ExpandedTicket = () => {
                     <Text>Lorem ipsum dolor sit amet, dolore magna aliqua. Molestie
                         a iaculis at erat pellentesque adipiscing commodo elit...</Text>
                 </Column>
-                <Column  rnCSS="max-height:285px;" gap={"16px"}>
-                    <Text weight={"700"} size={"20px"}>Timeline</Text>
-                    <FlatList
+                <Box>
+                    <Text weight={"700"} size={"20px"} rnCSS="margin-bottom:8px;">Timeline</Text>
+                    <BottomSheetFlatList
                         data={data}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) => <Event data={item} />}
+                        keyExtractor={(item: any) => item.id.toString()}
+                        renderItem={({ item }) => <Event data={item}/>}
                     />
-                </Column>
+                </Box>
             </Box>
         </Box>
         )
@@ -101,18 +56,17 @@ export default ExpandedTicket;
 
 const Event = ({data}: any) => {
 
-
     return (
-        <Row gap={"8px"}>
+        <Row height={"auto"} gap={"16px"}>
             <View>
                 <Text size={"14"}>{data.date}</Text>
                 <Text size={"14"}>{data.time}</Text>
             </View>
-            <View style={{ marginTop: 4, height: "100%" }}>
-                <View style={{ zIndex: 10 }}>
+            <View>
+                <View>
                     <PointIcon />
                 </View>
-                <VerticalLine color={theme.gray} width={"1px"} />
+                <VerticalLine height="auto" color={theme.gray} width={"1px"} />
             </View>
             <Column width={"75%"}>
                 <Text weight={"600px"}>{data.title}</Text>

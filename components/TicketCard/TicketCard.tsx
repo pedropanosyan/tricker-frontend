@@ -56,7 +56,7 @@ const TicketCard = ({status, title, description, id}: TicketCardProps) => {
             <TicketContainer color={color}>
                 <Text size="16" weight="700">{title}</Text>
                 <Text size="16">{description}</Text>
-                <Row justifyContent={"space-between"} alignItems="center">
+                <Row justifyContent="space-between" alignItems="center">
                     <Row alignItems="center" width="auto" gap="8px">
                         <IconContainer padding="0" radius="0" bg={color}>
                             <Ticket1 />

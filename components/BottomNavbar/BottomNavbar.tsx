@@ -47,9 +47,10 @@ export default BottomNavbar;
 
 export const BottomNavbarContainer = styled.View`
     background-color: ${theme.blackSecondary};
-    position: absolute;
+    position: fixed;
     bottom: 0;
     padding: 4px 24px;
+    box-sizing: border-box;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

@@ -7,7 +7,7 @@ import Home from "../pages/home/Home";
 const LoginRoute = () => {
 
   return (
-      <Redirect href="/(home)" />
+      <Redirect href="/(auth)" />
   );
 }
 

@@ -12,6 +12,7 @@ export const Box = styled.View<{bg?: string, padding?: string, width?: string, h
     background-color: ${props => props.bg || 'transparent'};
     padding: ${props => props.padding || '0px'};
     width: ${props => props.width || 'auto'};
+    height: ${props => props.height || 'auto'};
     gap: ${props => props.gap || '0px'};
     justify-content: ${props => props.justifyContent || 'flex-start'};
     align-items: ${props => props.alignItems || 'flex-start'};
@@ -88,7 +89,7 @@ export const VerticalLine = styled.View<{color?:string, width?:string, height?:s
     border-color: ${props => props.color || theme.lightergray};
     align-self: center;
     box-sizing: content-box;
-    height: ${props => props.height || '100%'};
+    height: ${props => props.height || 'auto'};
   
 `;
 

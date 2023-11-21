@@ -16,6 +16,8 @@ import {
     BottomSheetDefaultBackdropProps
 } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import CustomHeader from "../../components/CustomHeader/CustomHeader";
+import {Portal} from "@gorhom/portal";
+import config from "../../auth0-config";
 
 
 const Home = () => {
@@ -80,20 +82,81 @@ const Home = () => {
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.',
         },
     ];
-
-    const snapPoints = useMemo(() => ['50%', '85%'], []);
+    const data = [
+        {
+            id: 1,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+        {
+            id: 2,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+        {
+            id: 3,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+        {
+            id: 4,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+        {
+            id:5,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+        {
+            id:6,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+        {
+            id:7,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+        {
+            id:8,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+        {
+            id:9,
+            date: "21/03/23",
+            time: "12:05",
+            title: "Se comenzó el ticket",
+            description: "Lorem ipsum dolor sit amet, labore et dolore magna aliqua",
+        },
+    ];
+    const snapPoints = useMemo(() => ['60%', '80%'], []);
 
     const bottomSheetRef = useRef<BottomSheet>(null);
 
     const handleSwipe = () => {
-        console.log("swipe")
         if (showBottomSheet) {
-            console.log("close")
             bottomSheetRef.current?.close()
             setShowBottomSheet(false)
         }
         else {
-            console.log("expand")
             bottomSheetRef.current?.expand()
             setShowBottomSheet(true)
         }
@@ -140,28 +203,27 @@ const Home = () => {
             </Box>
             <Box width="100vw" rnCSS="position:absolute;bottom:0;">
                 {timer.show && (
-                    <View>
-                         {showBottomSheet && (
-                            <BottomSheet
-                                enablePanDownToClose={true}
-                                ref={bottomSheetRef}
-                                snapPoints={snapPoints}
-                                index={1}
-                                backgroundStyle={{backgroundColor: theme.black}}
-                                handleStyle={{backgroundColor: theme.black}}
-                                handleIndicatorStyle={{backgroundColor: theme.backgroundGray}}
-                                backdropComponent={renderBackdrop}
-                            >
-                                    <ExpandedTicket/>
-                            </BottomSheet>
-                        )}
-                        <TimerContainer onPress={handleSwipe}>
-                            <Timer />
-                        </TimerContainer>
-                    </View>
+                    <TimerContainer onPress={handleSwipe}>
+                        <Timer />
+                    </TimerContainer>
                 )}
                 <BottomNavbar />
             </Box>
+            {showBottomSheet && (
+                <BottomSheet
+                    backdropComponent={renderBackdrop}
+                    enablePanDownToClose={true}
+                    ref={bottomSheetRef}
+                    snapPoints={snapPoints}
+                    index={1}
+                    backgroundStyle={{backgroundColor: theme.gray}}
+                    handleStyle={{backgroundColor: theme.black}}
+                    handleIndicatorStyle={{backgroundColor: theme.backgroundGray}}
+                    onClose={() => handleSwipe()}
+                >
+                    <ExpandedTicket data={data}/>
+                </BottomSheet>
+            )}
         </OuterContainer>
     )
 }

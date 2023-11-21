@@ -14,7 +14,7 @@ export const TimerContainer = styled.TouchableHighlight`
     width: 100vw;
     position: fixed;
     align-self: center;
-    bottom: 55px;
+    bottom: 0;
     background-color: ${theme.blackSecondary};
     backdrop-filter: blur(12px);
 
