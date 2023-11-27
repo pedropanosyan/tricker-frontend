@@ -13,7 +13,9 @@ export default () => {
     }
 
     return (
-        <Stack>
+        <Stack screenOptions={{
+            headerShown: false,
+        }}>
         </Stack>
     )
 }

@@ -1,3 +1,5 @@
+
+
 const spacing = {
     xxSmall: 4,
     xSmall: 8,
@@ -12,19 +14,30 @@ const radius = {
 }
 
 export const theme = {
+    white: "#FEFEFE",
+    grey100: "#DEDEDE",
+    grey300: "#C1C1C1",
+    grey500: "#585858",
+    grey700: "#2B2B2B",
     black: '#111',
-    blackSecondary: '#1A1A1A',
-    blackTertiary: '#1F1F1F',
-    gray: '#DEDEDE',
-    textGray: '#9D9D9D',
-    lightgray: '#BEBEBE',
-    lightergray: '#D9D9D9',
-    backgroundGray: "#FFFFFF21",
-    white: '#fff',
-    violet: '#A12BFF',
-    lightViolet: '#D795FF',
-    lightBlue: '#43FFDD',
-    orange: '#FFA451',
+
+    typeImprovement: '#43FFDD',
+    typeBug: '#45BCFF',
+    typeFeature: '#FF6161',
+
+    priorityNo: "#B9B9B9",
+    priorityLow: "#FFDC61",
+    priorityMedium: "#FFA451",
+    priorityHigh: "#FF6161",
+    priorityUrgent: "#CB3434",
+
+    statusTodo: "#FEFEFE",
+    statusInProgress: "#FFA451",
+    statusReview: "#D795FF",
+    statusCompleted: "#43FFDD",
+
+    gradient: 'linear-gradient(130deg, #D795FF 0%, #43FFDD 92.42%)',
+
     spacing,
     radius
 };

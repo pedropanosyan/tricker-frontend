@@ -1,4 +1,4 @@
-import {FlatList, View} from "react-native";
+import {FlatList, Text, View} from "react-native";
 import {Box, Column, OuterContainer, Row} from "../../styled-components/styles";
 import {TicketsContainer, TimerContainer} from "./components.styles";
 import {JSX, useCallback, useEffect, useMemo, useRef, useState} from "react";
@@ -149,6 +149,8 @@ const Home = () => {
     ];
     const snapPoints = useMemo(() => ['60%', '80%'], []);
 
+    const token = useAppSelector((state) => state.token);
+
     const bottomSheetRef = useRef<BottomSheet>(null);
 
     const handleSwipe = () => {
@@ -186,6 +188,9 @@ const Home = () => {
                         horizontal
                     />
                 </Row>
+                <View>
+                    <Text style={{color:"white", fontSize:18}}>{token.token}</Text>
+                </View>
                 <TicketsContainer clockActive={timer.show}>
                     <FlatList
                         data={ticketData}
