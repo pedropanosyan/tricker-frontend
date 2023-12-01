@@ -3,8 +3,7 @@ import Ticket1 from "../../assets/icons/ticket/Ticket1";
 import Ticket2 from "../../assets/icons/ticket/Ticket2";
 import PlayIcon from "../../assets/icons/Timer/PlayIcon";
 import {
-    IconContainer, Row,
-    Text,
+    StyledBox, StyledInteractiveBox, StyledRow, StyledTypography,
     useMyTheme
 } from "../../styled-components/styles";
 import {StatusContainer, TicketContainer} from "./components.styles";
@@ -47,42 +46,44 @@ const TicketCard = ({status, title, description, id}: TicketCardProps) => {
     }
 
     return (
-        <View style={{paddingTop: 12}}>
-            <Row justifyContent="flex-end">
+        <StyledBox css={{ paddingTop: "12px" }}>
+            <StyledRow css={{ justifyContent: "flex-end" }}>
                 <StatusContainer bg={color}>
-                    <Text size="12" weight="500" color={theme.black}>{status}</Text>
+                    <StyledTypography css={{ color: theme.black }} variant="body1">{status}</StyledTypography>
                 </StatusContainer>
-            </Row>
+            </StyledRow>
             <TicketContainer color={color}>
-                <Text size="16" weight="700">{title}</Text>
-                <Text size="16">{description}</Text>
-                <Row justifyContent="space-between" alignItems="center">
-                    <Row alignItems="center" width="auto" gap="8px">
-                        <IconContainer padding="0" radius="0" bg={color}>
+                <StyledTypography variant="body1Bold">{title}</StyledTypography>
+                <StyledTypography variant="body1">{description}</StyledTypography>
+                <StyledRow css={{ justifyContent: "space-between", alignItems: "center" }}>
+                    <StyledRow css={{ alignItems: "center", width: "auto", gap: "8px" }}>
+                        <StyledBox css={{ backgroundColor: theme.grey500 }}>
                             <Ticket1 />
-                        </IconContainer>
-                        <IconContainer padding="0" radius="0" bg={theme.lightgray}>
+                        </StyledBox>
+                        <StyledBox css={{ backgroundColor: theme.grey300 }} >
                             <Ticket2 />
-                        </IconContainer>
-                        <IconContainer padding="4" bg={theme.backgroundGray}>
-                            <Text rnCSS="padding:0 6px;" size={"16"} weight={"700"}>5</Text>
-                        </IconContainer>
-                    </Row>
+                        </StyledBox>
+                        <StyledBox css={{ padding: "4px 8px", backgroundColor: theme.grey500 }}>
+                            <StyledTypography variant="body1Bold">5</StyledTypography>
+                        </StyledBox>
+                    </StyledRow>
                     {status === STATUS.COMPLETED ? (
-                        <IconContainer bg={color}>
+                        <StyledBox css={{ backgroundColor: color }}>
                             {STATUS_ICONS[status]}
-                        </IconContainer> ) : (
+                        </StyledBox> ) : (
                             timer.isRunning && timer.ticketId === id ? (
-                            <IconContainer onPress={() => handleStopTimer()} radius={"8"} opacity={'0.8'} padding="4" bg={color}>
+                            <StyledInteractiveBox css={{ borderRadius: "8px", opacity: "0.8", padding: "4px", backgroundColor: color }}
+                                                  onPress={() => handleStopTimer()}>
                                 <StopIcon/>
-                            </IconContainer>) : (
-                            <IconContainer onPress={() => handleStartTimer()}  radius={"8"} opacity={'0.8'} padding="4" bg={color}>
+                            </StyledInteractiveBox>) : (
+                            <StyledInteractiveBox css={{ borderRadius: "8px", opacity: "0.8", padding: "4px", backgroundColor: color }}
+                                onPress={() => handleStartTimer()}>
                                <PlayIcon color={theme.black}/>
-                            </IconContainer>
+                            </StyledInteractiveBox>
                             ))}
-                </Row>
+                </StyledRow>
             </TicketContainer>
-        </View>
+        </StyledBox>
     )
 }
 export default TicketCard;

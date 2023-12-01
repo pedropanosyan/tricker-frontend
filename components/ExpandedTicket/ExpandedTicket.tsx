@@ -2,9 +2,7 @@ import {FlatList, View} from "react-native";
 import {
     Box,
     Column,
-    IconContainer,
-    Row,
-    Text,
+    Row, StyledBox, StyledRow, StyledTypography,
     useMyTheme, VerticalLine
 } from "../../styled-components/styles";
 import Ticket1 from "../../assets/icons/ticket/Ticket1";
@@ -19,35 +17,36 @@ const ExpandedTicket = ({data}: any) => {
     const theme = useMyTheme();
 
     return (
-        <Box width="100%" height="100%" bg={theme.black} rnCSS="z-index:10; position:relative;">
-            <Box gap={"40px"} padding="16px">
-                <Column gap="16px">
-                    <Text weight={"700"} size={"24px"}>Ticket long long name</Text>
-                    <Text color={theme.textGray}>TIK-000</Text>
-                    <Row alignItems="center" gap="11px">
-                        <IconContainer padding="0" radius="0" bg={theme.lightBlue}>
+        <StyledBox css={{ width: "100%", height: "100%",
+            backgroundColor: theme.black, zIndex: 10, position: "relative" }}>
+            <StyledBox css={{ gap: "40px", padding: "16px" }}>
+                <StyledBox css={{ gap: "16px" }}>
+                    <StyledTypography css={{ color: "white" }} variant="h3">Ticket long long name</StyledTypography>
+                    <StyledTypography css={{ color: "white" }} variant="subtitle">Ticket short name</StyledTypography>
+                    <StyledRow css={{ alignItems: "center", gap: "12px" }}>
+                        <StyledBox css={{ backgroundColor: theme.lightblue300 }}>
                             <Ticket1 />
-                        </IconContainer>
-                        <IconContainer padding="0" radius="0" bg={theme.lightgray}>
+                        </StyledBox>
+                        <StyledBox css={{ backgroundColor: theme.grey500 }}>
                             <Ticket2 />
-                        </IconContainer>
-                        <IconContainer padding="4" bg={theme.backgroundGray}>
-                            <Text rnCSS="padding:0 6px;" size={"16"} weight={"700"}>5</Text>
-                        </IconContainer>
-                    </Row>
-                    <Text>Lorem ipsum dolor sit amet, dolore magna aliqua. Molestie
-                        a iaculis at erat pellentesque adipiscing commodo elit...</Text>
-                </Column>
-                <Box>
-                    <Text weight={"700"} size={"20px"} rnCSS="margin-bottom:8px;">Timeline</Text>
+                        </StyledBox>
+                        <StyledBox css={{ backgroundColor: theme.grey500, padding: "4px" }}>
+                            <StyledTypography css={{ color: "white", padding: "0 6px"}} variant="body1Bold">5</StyledTypography>
+                        </StyledBox>
+                    </StyledRow>
+                    <StyledTypography variant="body1">Lorem ipsum dolor sit amet, dolore magna aliqua. Molestie
+                        a iaculis at erat pellentesque adipiscing commodo elit...</StyledTypography>
+                </StyledBox>
+                <StyledBox>
+                    <StyledTypography variant="body1Bold">Timeline</StyledTypography>
                     <BottomSheetFlatList
                         data={data}
                         keyExtractor={(item: any) => item.id.toString()}
                         renderItem={({ item }) => <Event data={item}/>}
                     />
-                </Box>
-            </Box>
-        </Box>
+                </StyledBox>
+            </StyledBox>
+        </StyledBox>
         )
 }
 
@@ -57,21 +56,20 @@ export default ExpandedTicket;
 const Event = ({data}: any) => {
 
     return (
-        <Row height={"auto"} gap={"16px"}>
-            <View>
-                <Text size={"14"}>{data.date}</Text>
-                <Text size={"14"}>{data.time}</Text>
-            </View>
-            <View>
-                <View>
+        <StyledRow css={{ height: "auto", gap: "16px", backgroundColor: theme.grey700 }}>
+            <StyledBox>
+                <StyledTypography variant="body1">{data.date}</StyledTypography>
+                <StyledTypography variant="body1">{data.time}</StyledTypography>
+            </StyledBox>
+            <StyledBox css={{ borderLeft: `2px solid ${theme.white}` }}>
+                <StyledBox>
                     <PointIcon />
-                </View>
-                <VerticalLine height="auto" color={theme.gray} width={"1px"} />
-            </View>
+                </StyledBox>
+            </StyledBox>
             <Column width={"75%"}>
-                <Text weight={"600px"}>{data.title}</Text>
-                <Text color={theme.textGray}>{data.description}</Text>
+                <StyledTypography variant="subtitle">{data.subtitle}</StyledTypography>
+                <StyledTypography variant="body1">{data.description}</StyledTypography>
             </Column>
-        </Row>
+        </StyledRow>
     )
 }

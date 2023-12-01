@@ -1,4 +1,4 @@
-import {IconContainer, useMyTheme} from "../../styled-components/styles";
+import {StyledBox, StyledInteractiveBox, useMyTheme} from "../../styled-components/styles";
 import GoBack from "../../assets/icons/BottomNavbar/GoBack";
 import HomeIcon from "../../assets/icons/BottomNavbar/Home";
 import GoBackIcon from "../../assets/icons/BottomNavbar/GoBack";
@@ -25,19 +25,20 @@ const BottomNavbar = () => {
 
     return (
         <BottomNavbarContainer >
-            <IconContainer radius="8px">
+            <StyledInteractiveBox css={{ borderRadius:"8px", padding:"8px" }}>
                 <GoBackIcon />
-            </IconContainer>
-            <IconContainer onPress={() => navigateHome()}
-                           bg={currentPage === 'home' ? theme.backgroundGray : 'transparent'}
-                           radius="8px">
+            </StyledInteractiveBox>
+            <StyledInteractiveBox css={{ borderRadius:"8px", padding:"8px" }}
+                                  onPress={() => navigateHome()}>
                 <HomeIcon />
-            </IconContainer>
-            <IconContainer onPress={() => navigateProfile()}
-                           bg={currentPage === 'profile' ? theme.backgroundGray : 'transparent'}
-                           radius="8px">
-            <ProfileIcon />
-            </IconContainer>
+            </StyledInteractiveBox>
+            <StyledInteractiveBox
+                css={{ borderRadius:"8px", padding:"8px",
+                    backgroundColor: currentPage === 'profile' ? theme.grey500 : 'transparent',}}
+                onPress={() => navigateProfile()}
+            >
+                <ProfileIcon />
+            </StyledInteractiveBox>
         </BottomNavbarContainer>
     )
 
@@ -46,7 +47,7 @@ const BottomNavbar = () => {
 export default BottomNavbar;
 
 export const BottomNavbarContainer = styled.View`
-    background-color: ${theme.blackSecondary};
+    background-color: ${theme.grey700};
     position: fixed;
     bottom: 0;
     padding: 4px 24px;

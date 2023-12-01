@@ -7,8 +7,7 @@ import {COLORS, PADDING, RADIUS, WEIGHTS} from "../../constants/theme";
 import {useEffect, useRef, useState} from "react";
 import StopIcon from "../../assets/icons/Timer/StopIcon";
 import {
-    IconContainer, Row,
-    Text,
+    StyledBox, StyledColumn, StyledInteractiveBox, StyledRow, StyledTypography,
     useMyTheme
 } from "../../styled-components/styles"
 import {useTimer} from "../../hooks/useTimer";
@@ -52,33 +51,35 @@ const Timer = () => {
     }
 
     return (
-        <Row justifyContent="space-between" rnCSS="backdrop-filter: blur(12px);" padding="16">
-            <View>
-                <Text size="16" weight="500" color={theme.lightgray}>TKT-000</Text>
-                <Text size="26" weight="500">{formatTime(timer.time)}</Text>
-            </View>
-            <Row alignItems="center" gap="16">
-                <IconContainer onPress={() => handleSubmit()}>
+        <StyledRow css={{ justifyContent: "space-between", backdropFilter: "blur(12px)", padding:"16px" }}>
+            <StyledColumn>
+                <StyledTypography css={{ color: theme.grey300 }} variant="h2">TKT-000</StyledTypography>
+                <StyledTypography variant="h3">{formatTime(timer.time)}</StyledTypography>
+            </StyledColumn>
+            <StyledRow css={{ alignItems: "center", gap:"16px" }}>
+                <StyledInteractiveBox onPress={() => handleSubmit()}>
                     <AddIcon />
-                </IconContainer>
-                <IconContainer>
+                </StyledInteractiveBox>
+                <StyledInteractiveBox>
                     <FlagIcon />
-                </IconContainer>
+                </StyledInteractiveBox>
                 {timer.isRunning ? (
-                <IconContainer padding="0" onPress={() => handleStopTimer()}>
-                    <LinearGradient style={{borderRadius: RADIUS.large, padding: PADDING.xSmall}} colors={[theme.violet, theme.lightBlue]}>
+                <StyledInteractiveBox onPress={() => handleStopTimer()}>
+                    <LinearGradient style={{borderRadius: RADIUS.large, padding: PADDING.xSmall}}
+                                    colors={[theme.lightblue700, theme.lightblue100]}>
                         <StopIcon />
                     </LinearGradient>
-                </IconContainer>
+                </StyledInteractiveBox>
                 ) : (
-                <IconContainer padding="0" onPress={() => handleStartTimer()}>
-                    <LinearGradient style={{borderRadius: RADIUS.large, padding: PADDING.xSmall}} colors={[theme.violet, theme.lightBlue]}>
+                <StyledInteractiveBox onPress={() => handleStartTimer()}>
+                    <LinearGradient style={{borderRadius: RADIUS.large, padding: PADDING.xSmall}}
+                                    colors={[theme.lightblue700, theme.lightblue100]}>
                         <PlayIcon color={theme.black} />
                     </LinearGradient>
-                </IconContainer>
+                </StyledInteractiveBox>
                 )}
-            </Row>
-        </Row>
+            </StyledRow>
+        </StyledRow>
     )
 
 }

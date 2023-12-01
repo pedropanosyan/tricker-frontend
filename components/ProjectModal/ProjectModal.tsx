@@ -1,7 +1,7 @@
-import {FlatList, TouchableOpacity, View} from "react-native";
+import { FlatList } from "react-native";
 import ProjectLogo from "../../assets/icons/components/ProjectLogo";
-import {Box, Row, Text, useMyTheme} from "../../styled-components/styles";
-import {theme} from "../../styled-components/theme";
+import { StyledBox, StyledRow, StyledTypography, useMyTheme } from "../../styled-components/styles";
+import { theme } from "../../styled-components/theme";
 
 interface ProjectProps {
     name: string;
@@ -17,22 +17,24 @@ const Project = ({ name }: ProjectProps) => {
     const theme = useMyTheme();
 
     return (
-        <Row alignItems="center" gap="8px" padding="8px">
+        <StyledRow css={{ alignItems: "center", gap: "8px", padding: "8px" }}>
             <ProjectLogo />
-            <Text color={theme.black}>{name}</Text>
-        </Row>
+            <StyledTypography css={{ color: theme.black }}>{name}</StyledTypography>
+        </StyledRow>
     )
 }
 
 const ProjectModal = ({projects}: ProjectArray) => {
 
     return (
-        <Box padding="8px 16px" bg={theme.lightgray} rnCSS="position:absolute;top:96px;border-radius:16;align-self:center;">
+        <StyledBox css={{
+            padding: "8px 24px", backgroundColor: theme.grey300, position: "absolute",
+            top: "96px", borderRadius: "16px", alignSelf: "center" }}>
             <FlatList data={projects}
                       renderItem={
                             ({item}) => <Project name={item.name} />
                       } />
-        </Box>
+        </StyledBox>
     )
 }
 

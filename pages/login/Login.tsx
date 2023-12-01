@@ -4,9 +4,8 @@ import GoogleIcon from "../../assets/icons/components/GoogleIcon";
 import {LinearGradient} from "expo-linear-gradient";
 import {
     ImageContainer,
-    Subtitle,
-    Title, TitleContainer,
-    Text, useMyTheme, Row, OuterContainer, Box
+    Title,
+    useMyTheme, Row, Box, StyledBox, StyledTypography, StyledRow
 } from "../../styled-components/styles";
 import {LoginButton} from "./login.styles";
 import { useAuth0 } from "react-native-auth0";
@@ -14,6 +13,7 @@ import {useRouter} from "expo-router";
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import {addToken} from "../../store/features/tokenSlice";
 import {getHello} from "../../api/request";
+import {theme} from "../../styled-components/theme";
 
 const Login = () => {
 
@@ -49,23 +49,23 @@ return (
             end={{x: 1, y: 1}}
             style={{ flex: 1 }}
         >
-            <Box height="100%" alignItems="space-aro" justifyContent="space-around">
-                <View>
-                    <ImageContainer>
+            <StyledBox css={{ height: "100%", justifyContent: "space-around" }}>
+                <StyledBox css={{ alignItems: "center", justifyContent: "center" }}>
+                    <StyledBox>
                         <TrickerIcon size={108} color={"white"} />
-                    </ImageContainer>
-                    <TitleContainer>
-                        <Title>TRICKER</Title>
-                        <Subtitle>Let´s track your time</Subtitle>
-                    </TitleContainer>
-                </View>
-                <Row rnCSS="align-self=center;">
+                    </StyledBox>
+                    <StyledBox css={{ marginTop: "30px", gap:"8px", alignItems: "center" }}>
+                        <StyledTypography css={{ color: "white" }} variant="h1">TRICKER</StyledTypography>
+                        <StyledTypography css={{ color: "white" }} variant="h3">Let´s track your time</StyledTypography>
+                    </StyledBox>
+                </StyledBox>
+                <StyledRow css={{ alignSelf: "center" }} >
                     <LoginButton onPress={() => onLogin()}>
                         <GoogleIcon  color={"white"} size={20}/>
-                        <Text size="18">Continue with google</Text>
+                        <StyledTypography css={{ color: "white" }} variant="h3">Continue with google</StyledTypography>
                     </LoginButton>
-                </Row>
-            </Box>
+                </StyledRow>
+            </StyledBox>
         </LinearGradient>
     )
 

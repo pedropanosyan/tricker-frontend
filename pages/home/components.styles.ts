@@ -7,7 +7,7 @@ export const TicketsContainer = styled.View<{clockActive: boolean}>`
   overflow: scroll;
   gap: 16px;
   // margin-bottom: ${props => props.clockActive ? '156px' : '56px'};
-  max-height: ${props => props.clockActive ? '70vh' : '78vh'};
+  max-height: ${props => props.clockActive ? '72vh' : '82vh'};
 `;
 
 export const TimerContainer = styled.TouchableHighlight`
@@ -15,7 +15,7 @@ export const TimerContainer = styled.TouchableHighlight`
     position: fixed;
     align-self: center;
     bottom: 0;
-    background-color: ${theme.blackSecondary};
+    background-color: ${theme.grey700};
     backdrop-filter: blur(12px);
 
 `;

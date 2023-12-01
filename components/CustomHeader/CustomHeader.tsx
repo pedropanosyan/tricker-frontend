@@ -1,17 +1,10 @@
-import {AntDesign, FontAwesome} from "@expo/vector-icons";
 import {useState} from "react";
 import ProjectModal from "../ProjectModal/ProjectModal";
-import {ProfileIcon, SecondaryContainer} from "./header.styles";
-import {
-    Text,
-    TouchableRow,
-    Border,
-    Column,
-    Row, useMyTheme, Box
+import { useMyTheme, StyledBox, StyledRow, StyledInteractiveBox
 } from "../../styled-components/styles";
 import CustomHeaderIcon from "../../assets/icons/CustomHeader/CustomHeaderIcon";
-import {View} from "react-native";
 import {Portal} from "@gorhom/portal";
+import ProjectIcon from "../../assets/icons/CustomHeader/ProjectIcon";
 
 const projects = [
     {name: "Project 1", image: "image"},
@@ -30,28 +23,21 @@ const CustomHeader = () => {
     }
 
     return (
-        <Box>
-            <Row bg={theme.blackSecondary} rnCSS="z-index:10;position:fixed;box-sizing:content-box;">
-                <Row bg={theme.blackSecondary} rnCSS={"padding-top:24px;width:100vw;"} >
-                    <Border />
-                    <Row justifyContent="space-between" rnCSS="flex:1;" padding="20">
-                        <FontAwesome name="bars" size={24} color="white" />
-                        <TouchableRow gap="8px" onPress={() => toggleModal()}>
-                            <Text size="18">Project name</Text>
-                            <CustomHeaderIcon />
-                        </TouchableRow>
-                        <ProfileIcon>
-                            <FontAwesome  name="user-circle" size={24} color="white" />
-                        </ProfileIcon>
-                    </Row>
-                </Row>
-            </Row>
+        <StyledBox>
+            <StyledRow css={{ zIndex: 10, position: "fixed", boxSizing: "content-box", backgroundColor: theme.black }}>
+                    <StyledRow css={{ justifyContent: "center" }}>
+                        <StyledInteractiveBox css={{ marginTop: "48px", gap: "8px", justifyContent: "center", flexDirection: "row", width: "100%" }} onPress={() => toggleModal()}>
+                            <ProjectIcon size={32} />
+                            <CustomHeaderIcon size={32} />
+                        </StyledInteractiveBox>
+                    </StyledRow>
+            </StyledRow>
             {showModal &&
                 <Portal name="projectModal">
                     <ProjectModal projects={projects}/>
                 </Portal>
             }
-        </Box>
+        </StyledBox>
     )
 
 }

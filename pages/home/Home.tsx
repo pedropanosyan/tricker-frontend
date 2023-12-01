@@ -1,10 +1,10 @@
 import {FlatList, Text, View} from "react-native";
-import {Box, Column, OuterContainer, Row} from "../../styled-components/styles";
-import {TicketsContainer, TimerContainer} from "./components.styles";
-import {JSX, useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {useAppDispatch, useAppSelector} from "../../store/store";
+import {StyledBox, StyledRow} from "../../styled-components/styles";
+import { TicketsContainer, TimerContainer } from "./components.styles";
+import { JSX, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useAppSelector } from "../../store/store";
 import BottomSheet, {BottomSheetBackdrop} from "@gorhom/bottom-sheet";
-import {any} from "prop-types";
+
 import {theme} from "../../styled-components/theme";
 import FilterButton from "./components/FilterButton";
 import TicketCard from "../../components/TicketCard/TicketCard";
@@ -16,8 +16,6 @@ import {
     BottomSheetDefaultBackdropProps
 } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import CustomHeader from "../../components/CustomHeader/CustomHeader";
-import {Portal} from "@gorhom/portal";
-import config from "../../auth0-config";
 
 
 const Home = () => {
@@ -177,20 +175,17 @@ const Home = () => {
     );
 
     return (
-        <OuterContainer>
+        <StyledBox css={{ flex: 1, backgroundColor: theme.black }}>
             <CustomHeader />
-            <Box bg={theme.black}>
-                <Row width="100%" alignItems="center" rnCSS="margin-vertical=16px;margin-top:18;">
+            <StyledBox>
+                <StyledRow css={{ width: "100%", alignItems: "center", paddingBottom: "12px", marginTop: "18px" }}>
                     <FlatList data={options} renderItem={
                         ({item}) => (
                             <FilterButton name={item.name} selected={item.selected} />
                         )}
                         horizontal
                     />
-                </Row>
-                <View>
-                    <Text style={{color:"white", fontSize:18}}>{token.token}</Text>
-                </View>
+                </StyledRow>
                 <TicketsContainer clockActive={timer.show}>
                     <FlatList
                         data={ticketData}
@@ -205,15 +200,15 @@ const Home = () => {
                         )}
                     />
                 </TicketsContainer>
-            </Box>
-            <Box width="100vw" rnCSS="position:absolute;bottom:0;">
+            </StyledBox>
+            <StyledBox css={{ position: "absolute", bottom:"0", width: "100vw" }}>
                 {timer.show && (
                     <TimerContainer onPress={handleSwipe}>
                         <Timer />
                     </TimerContainer>
                 )}
                 <BottomNavbar />
-            </Box>
+            </StyledBox>
             {showBottomSheet && (
                 <BottomSheet
                     backdropComponent={renderBackdrop}
@@ -221,15 +216,15 @@ const Home = () => {
                     ref={bottomSheetRef}
                     snapPoints={snapPoints}
                     index={1}
-                    backgroundStyle={{backgroundColor: theme.gray}}
+                    backgroundStyle={{backgroundColor: theme.grey500}}
                     handleStyle={{backgroundColor: theme.black}}
-                    handleIndicatorStyle={{backgroundColor: theme.backgroundGray}}
+                    handleIndicatorStyle={{backgroundColor: theme.grey300}}
                     onClose={() => handleSwipe()}
                 >
                     <ExpandedTicket data={data}/>
                 </BottomSheet>
             )}
-        </OuterContainer>
+        </StyledBox>
     )
 }
 

@@ -1,96 +1,47 @@
 import styled, {DefaultTheme, useTheme} from "rn-css";
 import {theme} from "./theme";
+import {TypographyVariant} from "../utils/types";
+import {JSToCSS} from "../utils/helpers";
+import {Pressable, View} from "react-native";
 
+export interface StyledTextProps {
+    css?: { [x: string]: any }
+}
 
-export const OuterContainer = styled.View<{bg?: string}>`
-    flex: 1;
-    background-color: ${props => props.bg || theme.black};
-    width: auto;
+export interface Typography extends StyledTextProps {
+    variant?: TypographyVariant
+}
+
+export const StyledTypography = styled.Text.attrs<Typography>((props) => ({
+    variant: props.variant ?? "body1",
+}))`
+    color: ${(props) => props.theme.white};
+    ${(props) => props.variant && JSToCSS(props.theme.typographyVariant[props.variant])};
+    ${(props) => props.css && JSToCSS(props.css)};
+`
+
+export const StyledBox = styled(View)<StyledTextProps>`
+    ${(props) => props.css && JSToCSS(props.css)}
 `;
 
-export const Box = styled.View<{bg?: string, padding?: string, width?: string, height?: string, gap?: string, justifyContent?: string, alignItems?: string}>`
-    background-color: ${props => props.bg || 'transparent'};
-    padding: ${props => props.padding || '0px'};
-    width: ${props => props.width || 'auto'};
-    height: ${props => props.height || 'auto'};
-    gap: ${props => props.gap || '0px'};
-    justify-content: ${props => props.justifyContent || 'flex-start'};
-    align-items: ${props => props.alignItems || 'flex-start'};
-`;
-
-export const Row = styled(Box)<{gap?: string}>`
+export const StyledRow = styled(View)<StyledTextProps>`
+    display: flex;
     flex-direction: row;
-    gap: ${props => props.gap || '0px'};
+    ${(props) => props.css && JSToCSS(props.css)}
 `;
 
-export const Column = styled(Box)<{gap?: string}>`
-    gap: ${props => props.gap || '0px'};
+export const StyledColumn = styled(View)<StyledTextProps>`
+    display: flex;
+    flex-direction: column;
+    ${(props) => props.css && JSToCSS(props.css)}
 `;
 
-export const TouchableRow = styled.TouchableOpacity<{gap?: string, padding?:string, bg?:string}>`
-    flex-direction: row;
-    align-items: center;
-    gap: ${props => props.gap || '0px'};
-    padding: ${props => props.padding || '0px'};
-    background-color: ${props => props.bg || 'transparent'};
+export const StyledInteractiveBox = styled(Pressable)<StyledTextProps>`
+    ${(props) => props.css && JSToCSS(props.css)}
 `;
 
-
-export const InlineColumn = styled(Column)`
-  display: inline-flex;
-`;
-
-export const ImageContainer = styled.View`
-    width: auto;
-    height: auto;
-    align-items: center;
-    justify-content: center;
-`;
-
-export const Title = styled.Text`
-    font-weight: 400;
-    font-size: 56px;
-    color: ${theme.white};
-`;
-
-export const Subtitle = styled.Text`
-    font-weight: 500;
-    font-size: 20px;
-    color: ${theme.lightergray};
-`;
-
-export const TitleContainer = styled.View`
-    margin-top: 20px;
-    align-items: center;
-`;
-
-export const Text = styled.Text<{color?: string, size?: string, weight?: string}>`
-    font-size: ${props => props.size || '16px'};
-    color: ${props => props.color || theme.white};
-    font-weight: ${props => props.weight || 400};
-`;
-
-export const IconContainer = styled.TouchableOpacity<{bg?: string, radius?: string, padding?: string, opacity?: string}>`
-    border-radius: ${props => props.radius || '50px'};
-    background: ${props => props.bg || "transparent"};
-    padding: ${props => props.padding || '8px'};
-    align-items: center;
-    justify-content: center;
-    opacity: ${props => props.opacity || '1'};
-`;
-
-export const Border = styled.View<{color?:string, side?:string, width?:string}>`
-    border-${props => props.side || 'bottom'}-width: ${props => props.width || '1px'};
-    border-color: ${props => props.color || theme.lightergray};
-`;
-
-export const VerticalLine = styled.View<{color?:string, width?:string, height?:string}>`
-    border-left-width: ${props => props.width || '1px'};
-    border-color: ${props => props.color || theme.lightergray};
-    align-self: center;
-    box-sizing: content-box;
-    height: ${props => props.height || 'auto'};
-  
+export const StyledImage = styled.Image<StyledTextProps>`
+    ${(props) => props.css && JSToCSS(props.css)}
 `;
 
 export const useMyTheme = () => {
